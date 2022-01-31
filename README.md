@@ -1,5 +1,7 @@
 # monitorapa
-Progetto per monitoraggio e notifica di non compliance GDPR alle PA con input da IndicePA
+Progetto per monitoraggio e notifica di non compliance GDPR alle PA con input da IndicePA.
+
+Telegram https://t.me/monitoraPA 
 
 ## Project Description
 This project is about to write several scripts that perform the following actions, each one individually:
