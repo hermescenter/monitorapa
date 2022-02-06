@@ -54,22 +54,29 @@ def runCheck(pa, lineNum, script):
 
 def usage():
 	print("""
-./point2.py test_to_run.js
+./point2.py test_to_run.js [optional=starting_index]
 """)
 	sys.exit(-1)
 
 def main(argv):
-	if len(argv) != 2:
+	if len(argv) > 3 or len(argv) < 2:
 		usage()
 	test = argv[1]
+	try:
+		starting_index = int(argv[2])
+	except:
+		starting_index = 0
 	count = 0
 	with open('amministrazioni.txt', 'r') as f, open(test) as s:
 		script = s.read()
 		for line in f:
-			if count > 0:
+			if count > 0 and count > starting_index:
 				fields = line.split('\t')
 				try:
 					runCheck(fields, count, script)
+				except (KeyboardInterrupt):
+					print("Esco")
+					break
 				except:
 					print("Qualcosa è andato storto con una scheda. Informazioni della scheda: ")
 					print("Fields: " + str(fields))
