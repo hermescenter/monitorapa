@@ -1,22 +1,32 @@
 setTimeout(function(){
+	document.title = "";
+	var gaName = window.GoogleAnalyticsObject;
+	if(!!gaName)
+		gaName = "ga"
+	if(window[gaName] && window[gaName].l){
+		// fast track (thanks Augusto Zanellato)
+		document.title = window[gaName].q[0][1];
+		return;
+	}
 	var html = document.all[0].innerHTML;
-	var test = html.match(/ga\('create', '([^']*)'/);
+	var test = html.match(/ga\(['"]create['"], ['"]([^'"]*)['"]/);
 	if(!test){
 		var test = html.match(/ga\('create', {[^}]*}/gm);
 		if(test){
-			objStr = test[0].replace ("ga('create', ", 'window.MonitoraPAObj = ');
+			objStr = test[0];
+			objStr = objStr.replace ("ga('create', ", 'window.MonitoraPAObj = ');
+			objStr = objStr.replace ('ga("create", ', 'window.MonitoraPAObj = ');
 			eval(objStr);
 			test[1] = window.MonitoraPAObj.trackingId;
 		}
 	}
 	if(!test){
-		test = html.match(/gtag\('config', '([^']*)'/);
+		test = html.match(/gtag\(['"]config['"], ['"]([^'"]*)['"]/);
 	}
 	if(!test){
-		test = html.match(/push\(\['_setAccount', '([^']*)'\]/)
+		test = html.match(/push\(\[['"]_setAccount['"], ['"]([^'"]*)['"]\]/)
 	}
 	if(!test){
-		test = [0]
 		for(var sc of document.getElementsByTagName('script'))
 			if(sc.src.indexOf('googletagmanager') > -1) {
 				var txtFile = new XMLHttpRequest();
@@ -27,8 +37,6 @@ setTimeout(function(){
 						var tId = content.match(/UA-[^'"]+/);
 						if(tId){
 							document.title = tId[0];
-						} else {
-							document.title = "";
 						}
 					} 
 				}
@@ -36,10 +44,7 @@ setTimeout(function(){
 			}
 	}
 
-
 	if(test){
 		document.title = test[1];
-	} else {
-		document.title = "";
 	}
-}, 3000)
+}, 2000)

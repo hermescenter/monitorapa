@@ -39,6 +39,7 @@ def runCheck(pa, lineNum, script):
 	try:
 		url = normalizeUrl(pa[8])
 		driver.get(url)
+		time.sleep(2)
 		driver.execute_script(script)
 		time.sleep(8)
 		fname = 'out/%s.OK.txt' % lineNum
@@ -50,6 +51,7 @@ def runCheck(pa, lineNum, script):
 		with open(fname, 'w') as f:
 			f.write("%s\n" % url)
 			f.write("%s" % err)
+	#time.sleep(100000)
 	driver.close()
 
 def usage():
