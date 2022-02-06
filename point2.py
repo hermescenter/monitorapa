@@ -68,7 +68,14 @@ def main(argv):
 		for line in f:
 			if count > 0:
 				fields = line.split('\t')
-				runCheck(fields, count, script)
+				try:
+					runCheck(fields, count, script,driver)
+				except:
+					print("Qualcosa è andato storto con una scheda")
+					print("Informazioni della scheda: ")
+					print("Fields: " + fields)
+					print("Count: " + count)
+					print("Script: " + script)
 			count += 1
 #			if count > 121:
 #				break
