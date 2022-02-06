@@ -10,18 +10,30 @@ def normalizeUrl(url):
 	return url
 
 def runCheck(pa, lineNum, script):
-	driver = webdriver.Chrome('chromedriver')
+	if "@" in pa[8]:
+		fname = 'out/%s.ERR.txt' % lineNum
+		with open(fname, 'w') as f:
+			f.write("invalid url: %s" % pa[8])
+		return
+	op = webdriver.ChromeOptions()
+	op.add_argument('--headless')
+	op.add_argument('--disable-web-security')
+
+	driver = webdriver.Chrome('chromedriver', options=op)
 	try:
 		url = normalizeUrl(pa[8])
 		driver.get(url)
 		driver.execute_script(script)
-		time.sleep(5)
-		fname = 'out/%s.txt' % lineNum
-		print("%s: found '%s', saved in %s" %(url, driver.title, fname))
+		time.sleep(8)
+		fname = 'out/%s.OK.txt' % lineNum
 		with open(fname, 'w') as f:
 			f.write(driver.title)
-	except WebDriverException:
-		pass
+		print("%s: found '%s', saved in %s" %(url, driver.title, fname))
+	except WebDriverException as err:
+		fname = 'out/%s.ERR.txt' % lineNum
+		with open(fname, 'w') as f:
+			f.write("%s\n" % url)
+			f.write("%s" % err)
 	driver.close()
 
 def usage():
@@ -38,11 +50,11 @@ def main(argv):
 	with open('amministrazioni.txt', 'r') as f, open(test) as s:
 		script = s.read()
 		for line in f:
-			fields = line.split('\t')
 			if count > 0:
+				fields = line.split('\t')
 				runCheck(fields, count, script)
 			count += 1
-#			if count > 50:
+#			if count > 121:
 #				break
 
 if __name__ == "__main__":

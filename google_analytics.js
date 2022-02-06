@@ -12,6 +12,29 @@ setTimeout(function(){
 	if(!test){
 		test = html.match(/gtag\('config', '([^']*)'/);
 	}
+	if(!test){
+		test = html.match(/push\(\['_setAccount', '([^']*)'\]/)
+	}
+	if(!test){
+		test = [0]
+		for(var sc of document.getElementsByTagName('script'))
+			if(sc.src.indexOf('googletagmanager') > -1) {
+				var txtFile = new XMLHttpRequest();
+				txtFile.open("GET", sc.src, true);
+				txtFile.onreadystatechange = function(){  
+					if (txtFile.readyState === 4) {
+						var content = txtFile.responseText;
+						var tId = content.match(/UA-[^'"]+/);
+						if(tId){
+							document.title = tId[0];
+						} else {
+							document.title = "";
+						}
+					} 
+				}
+				txtFile.send()
+			}
+	}
 
 
 	if(test){
@@ -19,4 +42,4 @@ setTimeout(function(){
 	} else {
 		document.title = "";
 	}
-}, 0)
+}, 3000)

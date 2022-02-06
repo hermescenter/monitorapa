@@ -1,7 +1,8 @@
 # monitorapa
 Progetto per monitoraggio e notifica di non compliance GDPR alle PA con input da IndicePA.
 
-Telegram https://t.me/monitoraPA 
+Telegram: https://t.me/monitoraPA   
+[Element/Matrix](https://element.io): #MonitoraPA:matrix.opencloud.lu
 
 ## Project Description
 This project is about to write several scripts that perform the following actions, each one individually:
