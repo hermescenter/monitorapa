@@ -15,11 +15,27 @@ def runCheck(pa, lineNum, script):
 		with open(fname, 'w') as f:
 			f.write("invalid url: %s" % pa[8])
 		return
+
 	op = webdriver.ChromeOptions()
 	op.add_argument('--headless')
 	op.add_argument('--disable-web-security')
+	op.add_argument('--no-sandbox')
+	op.add_argument('--disable-extensions')
+	op.add_argument('--dns-prefetch-disable')
+	op.add_argument('--disable-gpu')
+	op.add_argument('--ignore-certificate-errors')
+	op.add_argument('--ignore-ssl-errors')
+	op.add_argument('enable-features=NetworkServiceInProcess')
+	op.add_argument('disable-features=NetworkService')
+	op.add_argument('--window-size=1920,1080')
+	op.add_argument('--aggressive-cache-discard')
+	op.add_argument('--disable-cache')
+	op.add_argument('--disable-application-cache')
+	op.add_argument('--disable-offline-load-stale-cache')
+	op.add_argument('--disk-cache-size=0')
 
 	driver = webdriver.Chrome('chromedriver', options=op)
+
 	try:
 		url = normalizeUrl(pa[8])
 		driver.get(url)
@@ -59,5 +75,3 @@ def main(argv):
 
 if __name__ == "__main__":
     main(sys.argv)
-
-
