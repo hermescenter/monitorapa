@@ -32,8 +32,15 @@ The software works this way:
    free from Google Analytics surveillance.
 3. python.py, after 5 seconds, get the title and write it into a file
    in the out/ directory named after its line number in the
-   amministrazioni.txt file 
+   amministrazioni.txt file, for example out/100.OK.txt
+   (or out/100.ERR.txt in case of error)
 
 Obviously, if GA is not found, the file will be empty.
 If GA is found, it will contains the tracking ID (or any other metadata)
 
+## Point 3
+```
+./point3.py
+```
+
+Will produce a new file point3.amministrazione.txt enriched as for specification.
