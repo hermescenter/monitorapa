@@ -52,14 +52,14 @@ pip install -r requirements.txt
 ## Point 1
 
 ```
-./point1.py
+python3 point1.py
 ```
 Downloads amministrazione.txt
 
 ## Point 2
 
 ```
-./point2.py ./google_analytics.js
+python3 point2.py ./google_analytics.js
 ```
 Run point 2 checks over all the website listed in amministrazione.txt.
 
@@ -81,7 +81,7 @@ If GA is found, it will contains the tracking ID (or any other metadata)
 
 ## Point 3
 ```
-./point3.py
+python3 point3.py
 ```
 
 Will produce a new file point3.amministrazione.txt enriched as for specification.
