@@ -70,7 +70,7 @@ def main(argv):
 	with open('amministrazioni.txt', 'r') as f, open(test) as s:
 		script = s.read()
 		for line in f:
-			if count > 0 and count > starting_index:
+			if count > 0 and count >= starting_index:
 				fields = line.split('\t')
 				try:
 					runCheck(fields, count, script)
