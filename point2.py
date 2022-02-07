@@ -3,6 +3,7 @@ from selenium import webdriver
 from selenium.common.exceptions import WebDriverException
 import time
 import sys
+import socket
 
 def normalizeUrl(url):
 	if not url.startswith('http'):
@@ -10,7 +11,13 @@ def normalizeUrl(url):
 	return url
 
 def runCheck(pa, lineNum, script):
-	if "@" in pa[8] or pa[8] == "":
+	valid_hostname=True
+	try:
+		socket.gethostbyname(pa[8])
+	except:
+		valid_hostname=False
+
+	if "@" in pa[8] or pa[8] == "" or not valid_hostname:
 		fname = 'out/%s.ERR.txt' % lineNum
 		with open(fname, 'w') as f:
 			f.write("invalid url: %s" % pa[8])
