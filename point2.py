@@ -10,7 +10,7 @@ def normalizeUrl(url):
 	return url
 
 def runCheck(pa, lineNum, script):
-	if "@" in pa[8]:
+	if "@" in pa[8] or pa[8] == "":
 		fname = 'out/%s.ERR.txt' % lineNum
 		with open(fname, 'w') as f:
 			f.write("invalid url: %s" % pa[8])
@@ -74,6 +74,7 @@ def main(argv):
 		for line in f:
 			if count > 0 and count >= starting_index:
 				fields = line.split('\t')
+
 				try:
 					runCheck(fields, count, script)
 				except (KeyboardInterrupt):
