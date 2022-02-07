@@ -7,26 +7,50 @@ import socket
 from urllib import parse
 
 def normalizeUrl(url):
-	url = url.lower()
 	if not url.startswith('http'):
 		return 'http://' + url
 	return url
 
-def runCheck(pa, lineNum, script):
-	valid_hostname=True
-	url = ""
+# very loosy validation: leave to the browser mind reading euristics
+def looksValidUrl(url):
+	if len(url) < 4:
+		return False
+	if "@" in url:
+		return False
+	if url.startswith('about:'):
+		# yeah... somobody put "about:blank" as a PA web site
+		return False
+	return True
+	
+# very loosy check: ideally only verify if the DNS can resolve the hostname
+def looksReachableUrl(url):
 	try:
-		url = normalizeUrl(pa[8])
 		split_url = parse.urlsplit(url)
 		socket.gethostbyname(split_url.netloc)
+		return True
 	except:
-		valid_hostname=False
+		return False
 
-	if "@" in pa[8] or pa[8] == "" or not valid_hostname:
-		fname = 'out/%s.ERR.txt' % lineNum
-		with open(fname, 'w') as f:
-			f.write("invalid url: %s" % pa[8])
+def saveError(lineNum, error):
+	fname = 'out/%s.ERR.txt' % lineNum
+	with open(fname, 'w') as f:
+		f.write(error)
+	
+
+def runCheck(pa, lineNum, script):
+	url = pa[8].lower()
+	if not looksValidUrl(url):
+		saveError(lineNum, "invalid url: %s" % url)
 		return
+
+	url = normalizeUrl(url)
+# Disabled: seemed a good idea, but can take several seconds to timeout
+#           anyway and is less stable then the browser anyway
+#           (for example the server might resolve to an unreachable
+#            ip or redirect to an unreachable host)
+#	if not looksReachableUrl(url):
+#		saveError(lineNum, "unreachable: %s" % url)
+#		return
 
 	op = webdriver.ChromeOptions()
 	op.add_argument('--headless')
@@ -58,10 +82,7 @@ def runCheck(pa, lineNum, script):
 			f.write(driver.title)
 		print("%s: found '%s', saved in %s" %(url, driver.title, fname))
 	except WebDriverException as err:
-		fname = 'out/%s.ERR.txt' % lineNum
-		with open(fname, 'w') as f:
-			f.write("%s\n" % url)
-			f.write("%s" % err)
+		saveError(lineNum, "%s\n%s" % (url, err))
 	#time.sleep(100000)
 	driver.close()
 
