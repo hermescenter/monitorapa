@@ -4,6 +4,7 @@ from selenium.common.exceptions import WebDriverException
 import time
 import sys
 import socket
+from urllib import parse
 
 def normalizeUrl(url):
 	if not url.startswith('http'):
@@ -12,8 +13,11 @@ def normalizeUrl(url):
 
 def runCheck(pa, lineNum, script):
 	valid_hostname=True
+	url = ""
 	try:
-		socket.gethostbyname(pa[8])
+		url = normalizeUrl(pa[8])
+		split_url = parse.urlsplit(url)
+		socket.gethostbyname(split_url.netloc)
 	except:
 		valid_hostname=False
 
@@ -44,7 +48,6 @@ def runCheck(pa, lineNum, script):
 	driver = webdriver.Chrome('chromedriver', options=op)
 
 	try:
-		url = normalizeUrl(pa[8])
 		driver.get(url)
 		time.sleep(2)
 		driver.execute_script(script)
