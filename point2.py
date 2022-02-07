@@ -39,6 +39,8 @@ def saveError(lineNum, error):
 
 def runCheck(pa, lineNum, script):
 	url = pa[8].lower()
+	if len(url) == 0:
+		return # nothing to do... not even logging an error...
 	if not looksValidUrl(url):
 		saveError(lineNum, "invalid url: %s" % url)
 		return
