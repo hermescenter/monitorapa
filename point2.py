@@ -7,6 +7,7 @@ import socket
 from urllib import parse
 
 def normalizeUrl(url):
+	url = url.lower()
 	if not url.startswith('http'):
 		return 'http://' + url
 	return url
