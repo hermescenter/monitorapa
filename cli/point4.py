@@ -1,10 +1,19 @@
+#!/usr/bin/env python3
+
+# This file is part of MonitoraPA
+#
+# Copyright (C) 2022 Leonardo Canello <leonardocanello@protonmail.com>
+#
+# MonitoraPA is a hack. You can use it according to the terms and
+# conditions of the Hacking License (see LICENSE.txt)
+
 import smtplib, ssl
 import configparser
 import sys
 
 def usage():
     print("""
-./point4.py [optional=start_index] [optional=end_index]
+./cli/point4.py [optional=start_index] [optional=end_index]
 """)
     sys.exit(-1)
 
@@ -35,7 +44,7 @@ Alla Att.ne del DPO (Responsabile Protezione Dati) dell'Ente. Oggetto: Diffida p
     port=int(config['port'])
     sender_email=str(config['sender_email'])
     password=str(config['password'])
-    receiver_email=str(config['receiver_email'])
+    receiver_email=str(config['debug_receiver_email'])
 
     context = ssl.create_default_context()
     with smtplib.SMTP_SSL(smtp_server, port, context=context) as server:

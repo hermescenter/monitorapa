@@ -1,5 +1,5 @@
-amministrazioni.txt
-point3.amministrazioni.txt
-out/*.txt
+out/*
 .venv
-point4.cfg
+cli/point4.cfg
+
+__pycache__
