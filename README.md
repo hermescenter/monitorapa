@@ -19,7 +19,7 @@ MonitoraPA is composed of several components.
 
 # Authors, Copyright and Licensing
 
-MonitoraPA has been created by several [AUTHORS.md](./AUTHORS.md).
+MonitoraPA has been created by several [AUTHORS](./AUTHORS.md).
 
 It's brought to you under the [Hacking License](./LICENSE.txt) that, as
 an explicit wrap contract between you and the authors, must also be
