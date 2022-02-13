@@ -84,6 +84,12 @@ Downloads `out/YYYY-MM-DD/enti.tsv`
 ```
 python3 cli/point2.py [date] check/google_analytics.js [starting_index]
 ```
+
+If you want to redirect output:
+```
+python3 cli/point2.py check/google_analytics.js  | unbuffer -p tee out/2022-02-13/point2.out
+```
+
 Check for Google Analytics presence over all the website listed in
 `out/YYYY-MM-DD/enti.tsv` (Tab Separated Value).
 Other scripts in `check/` can be used instead of `google_analytics.js`.
