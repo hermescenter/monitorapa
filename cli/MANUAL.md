@@ -8,16 +8,20 @@ if you do not want to use cromium driver)
 If you are on a Debian stable you can simply
 
 ```
-apt-get install python3 python3-selenium chromium-driver
+apt-get install python3 python3-selenium chromium-driver 
 ```
 
-## Manual installation of requirements
+## Manual installation for Virtual Env of requirements
 
 - [Python3](https://www.python.org)
 
-E.g. on an Arch machine
+On Debian install VirtualEnv
+
+```apt-get install python3-venv ```
+
+On Arch Linux
 ```
-pacman -S python3
+pacman -S python3 TODO: Fix to install virtualenv
 ```
 
 If your Python3 package doesn't bundle Pip, you will have to [install it](https://pip.pypa.io/en/stable/installation/).
@@ -44,13 +48,13 @@ Activate your environment:
   ```
 - Linux
   ```bash
-  ./.venv/bin/activate
+  . .venv/bin/activate
   ```
 ```
 
 Install the required packages:
 ```bash
-pip install -r requirements.txt
+pip install -r /clirequirements.txt
 ```
 
 
