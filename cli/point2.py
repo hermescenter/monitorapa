@@ -19,12 +19,15 @@ from urllib import parse
 
 outDir = commons.computeOutDir(sys.argv)
 
+
 def normalizeUrl(url):
     if not url.startswith('http'):
         return 'http://' + url
     return url
 
 # very loosy validation: leave to the browser mind reading euristics
+
+
 def looksValidUrl(url):
     if len(url) < 4:
         return False
@@ -34,8 +37,10 @@ def looksValidUrl(url):
         # yeah... somobody put "about:blank" as a PA web site
         return False
     return True
-    
+
 # very loosy check: ideally only verify if the DNS can resolve the hostname
+
+
 def looksReachableUrl(url):
     try:
         split_url = parse.urlsplit(url)
@@ -44,16 +49,17 @@ def looksReachableUrl(url):
     except:
         return False
 
+
 def saveError(lineNum, error):
     fname = '%s/%s.ERR.txt' % (outDir, lineNum)
     with open(fname, 'w') as f:
         f.write(error)
-    
+
 
 def runCheck(pa, lineNum, script):
     url = pa[29].lower()
     if len(url) == 0:
-        return # nothing to do... not even logging an error...
+        return  # nothing to do... not even logging an error...
     if not looksValidUrl(url):
         saveError(lineNum, "invalid url: %s" % url)
         return
@@ -95,22 +101,29 @@ def runCheck(pa, lineNum, script):
         fname = '%s/%s.OK.txt' % (outDir, lineNum)
         with open(fname, 'w') as f:
             f.write(driver.title)
-        print("%s: found '%s', saved in %s" %(url, driver.title, fname))
+        print("%s: found '%s', saved in %s" % (url, driver.title, fname))
     except WebDriverException as err:
         saveError(lineNum, "%s\n%s" % (url, err))
     #time.sleep(100000)
     driver.close()
 
+
 def usage():
     print("""
-./cli/point2.py check/test_to_run.js [starting_index]
+./cli/point2.py [date] check/test_to_run.js [starting_index]
 """)
     sys.exit(-1)
 
+
 def main(argv):
-    if len(argv) > 3 or len(argv) < 2:
+    if len(argv) > 4 or len(argv) < 2:
         usage()
-    test = argv[1]
+
+    if "2022" in argv[1]:
+        test = argv[2]
+    else:
+        test = argv[1]
+
     try:
         starting_index = int(argv[2])
     except:
@@ -128,8 +141,8 @@ def main(argv):
                     print("Esco")
                     break
 
-
             count += 1
+
 
 if __name__ == "__main__":
     main(sys.argv)

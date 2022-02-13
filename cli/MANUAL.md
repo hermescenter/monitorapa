@@ -8,7 +8,7 @@ if you do not want to use cromium driver)
 If you are on a Debian stable you can simply
 
 ```
-apt-get install python3 python3-selenium chromium-driver 
+apt-get install python3 python3-selenium chromium-driver
 ```
 
 ## Manual installation of requirements
@@ -61,7 +61,7 @@ The scripts assume to be run from the repository root.
 Since the list of PA is updated daily, all script must be run on the
 same copy of the list, to preserve results' meaning.
 
-So the output directory will be created after each the download of the 
+So the output directory will be created after each the download of the
 list with a date in ISO 8601 format (YYYY-MM-DD), and each script will
 output in the LAST of such folders in out/ (alphabetically sorted).
 
@@ -78,9 +78,9 @@ Downloads `out/YYYY-MM-DD/enti.tsv`
 ## Point 2
 
 ```
-python3 cli/point2.py check/google_analytics.js
+python3 cli/point2.py [date] check/google_analytics.js [starting_index]
 ```
-Check for Google Analytics presence over all the website listed in 
+Check for Google Analytics presence over all the website listed in
 `out/YYYY-MM-DD/enti.tsv` (Tab Separated Value).
 Other scripts in `check/` can be used instead of `google_analytics.js`.
 
@@ -105,7 +105,7 @@ The file creation time will be used as the time of the test.
 
 ## Point 3
 ```
-python3 cli/point3.py check/google_analytics.js [format]
+python3 cli/point3.py  [date] check/google_analytics.js [format]
 ```
 
 Will produce a new file `out/YYYY-MM-DD/google_analytics/point3/enti.[format]`
@@ -115,7 +115,7 @@ Supported format are `tsv` (the default, always produced) or `csv` (TODO) or `js
 
 ## Point 4
 ```
-python3 cli/point4.py check/google_analytics.js
+python3 cli/point4.py [date] check/google_analytics.js [start_index] [end_index]
 ```
 
 Will send an email to the PAs that are still hosting the
@@ -125,4 +125,3 @@ The list of PAs to mail will be read in the output file of `cli/point3.py`
 The sender mail and SMTP server must be configured in a configuration
 file named `cli/point4.cfg` that must be kept secret.
 A sample (mock) configuration is provided in `cli/point4_sample.cfg`
-
