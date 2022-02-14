@@ -56,6 +56,7 @@
 ## 2022/02/14
 ### \_Zaizen\_
 - Updated PROGRESS.md to have information from the beginning of the project too and a current status section to see what we've done and what is missing.
+- Docker container (doesn't work)
 
 # Current status
 

@@ -1,0 +1,14 @@
+version: '1.0'
+
+services:
+    monitorapa:
+        image: monitorapa
+        build:
+            context: .
+            dockerfile: ./Dockerfile
+
+        volumes:
+            - ./out:/usr/src/app/out
+        #  - ./cli:/usr/src/app/cli
+        #  - ./check:/usr/src/app/check
+        restart: unless-stopped
