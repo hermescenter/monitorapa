@@ -105,7 +105,7 @@ def runCheck(pa, lineNum, script):
     except WebDriverException as err:
         saveError(lineNum, "%s\n%s" % (url, err))
     #time.sleep(100000)
-    driver.close()
+    driver.quit()
 
 
 def usage():
