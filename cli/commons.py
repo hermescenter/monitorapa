@@ -47,21 +47,18 @@ def computeOutDir(argv):
         if not os.path.isfile(os.path.join(dirName, "README.md")):
             outputReadme(dirName)
         return dirName
-    if not "check/" in argv[1] and not "check/" in argv[2]:
+
+    if not "check/" in argv[1]:
         sys.exit("Missing GDPR compliance check.")
 
+    if not "out/202" in argv[2] or not "enti.tsv" in argv[2]:
+        sys.exit("Missing enti.tsv path.")
+
     check = os.path.splitext(os.path.basename(argv[1]))[0]
+    outDir = os.path.dirname(argv[2])
     point = os.path.splitext(os.path.basename(argv[0]))[0]
-    outDirs = ["out/%s" %
-               d for d in os.listdir("out/") if os.path.isdir("out/%s" % d)]
 
-    if "2022" in argv[1]:
-        check = os.path.splitext(os.path.basename(argv[2]))[0]
-        for outDir in outDirs:
-            if argv[1] in outDir:
-                outDirs[-1] = "out/" + argv[1]
-
-    dirName = "%s/%s/%s" % (outDirs[-1], check, point)
+    dirName = "%s/%s/%s" % (outDir, check, point)
 
     if not os.path.isdir(dirName):
         os.makedirs(dirName, 0o766)

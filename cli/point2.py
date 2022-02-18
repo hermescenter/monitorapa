@@ -21,6 +21,7 @@ if len(sys.argv) > 4 or len(sys.argv) < 2:
     usage()
 outDir = commons.computeOutDir(sys.argv)
 
+
 def normalizeUrl(url):
     if not url.startswith('http'):
         return 'http://' + url
@@ -40,6 +41,8 @@ def looksValidUrl(url):
     return True
 
 # very loosy check: ideally only verify if the DNS can resolve the hostname
+
+
 def looksReachableUrl(url):
     try:
         split_url = parse.urlsplit(url)
@@ -47,6 +50,7 @@ def looksReachableUrl(url):
         return True
     except:
         return False
+
 
 def clickConsentButton(url, lineNum, driver):
 	# thanks Mauro Gorrino
@@ -59,6 +63,7 @@ def clickConsentButton(url, lineNum, driver):
         except Exception:
             pass
     return len(buttons) > 0
+
 
 def saveError(lineNum, error):
     fname = '%s/%s.ERR.txt' % (outDir, lineNum)
@@ -125,25 +130,20 @@ def runCheck(pa, lineNum, script):
 
 def usage():
     print("""
-./cli/point2.py [date] check/test_to_run.js [starting_index]
+./cli/point2.py check/test_to_run.js out/202?-??-??/enti.tsv [starting_index]
 """)
     sys.exit(-1)
 
 
 def main(argv):
 
-    if "2022" in argv[1]:
-        test = argv[2]
-    else:
-        test = argv[1]
+    test = argv[1]
 
     try:
-        starting_index = int(argv[2])
+        starting_index = int(argv[3])
     except:
-        try:
-            starting_index = int(argv[3])
-        except:
-            starting_index = 0
+        starting_index = 0
+
     count = 0
     with open(os.path.normpath(outDir + '/../../enti.tsv'), 'r') as f, open(test) as s:
         script = s.read()

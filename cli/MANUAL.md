@@ -8,7 +8,7 @@ if you do not want to use cromium driver)
 If you are on a Debian stable you can simply
 
 ```
-apt-get install python3 python3-selenium chromium-driver 
+apt-get install python3 python3-selenium chromium-driver
 ```
 
 ## Manual installation for Virtual Env of requirements
@@ -82,12 +82,12 @@ Downloads `out/YYYY-MM-DD/enti.tsv`
 ## Point 2
 
 ```
-python3 cli/point2.py [date] check/google_analytics.js [starting_index]
+python3 cli/point2.py check/google_analytics.js out/202?-??-??/enti.tsv [starting_index]
 ```
 
 If you want to redirect output:
 ```
-python3 cli/point2.py check/google_analytics.js  | unbuffer -p tee out/2022-02-13/point2.out
+python3 cli/point2.py check/google_analytics.js out/202?-??-??/enti.tsv [starting_index] | unbuffer -p tee out/2022-02-13/point2.out
 ```
 
 Check for Google Analytics presence over all the website listed in
@@ -115,7 +115,7 @@ The file creation time will be used as the time of the test.
 
 ## Point 3
 ```
-python3 cli/point3.py  [date] check/google_analytics.js [format]
+python3 cli/point3.py check/google_analytics.js out/202?-??-??/enti.tsv [format]
 ```
 
 Will produce a new file `out/YYYY-MM-DD/google_analytics/point3/enti.[format]`
@@ -125,7 +125,7 @@ Supported format are `tsv` (the default, always produced) or `csv` (TODO) or `js
 
 ## Point 4
 ```
-python3 cli/point4.py [date] check/google_analytics.js [start_index] [end_index]
+python3 cli/point4.py check/google_analytics.js out/202?-??-??/enti.tsv [start_index] [end_index]
 ```
 
 Will send an email to the PAs that are still hosting the

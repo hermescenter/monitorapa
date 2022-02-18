@@ -16,7 +16,7 @@ import commons
 
 def usage():
     print("""
-./cli/point4.py [date] check/test_to_run.js [start_index] [end_index]
+./cli/point4.py check/test_to_run.js out/202?-??-??/enti.tsv [start_index] [end_index]
 """)
     sys.exit(-1)
 
@@ -24,7 +24,7 @@ def usage():
 def process(pa, message):
 
     print("Codice: " + pa[1] + ", Denominazione: " + pa[2] + ", nome: " + pa[12]
-          + ", cognome:" + pa[13] + ", sito: " + pa[29].lower() + ", mail: " + pa[19])
+          + ", cognome: " + pa[13] + ", sito: " + pa[29].lower() + ", mail: " + pa[19], ", result: " + pa[35])
 
     final_msg = message.replace("$cod_amm", pa[1])
     final_msg = final_msg.replace("$des_amm", pa[2])
@@ -62,16 +62,12 @@ Alla Att.ne del DPO (Responsabile Protezione Dati) dell'Ente. Oggetto: Diffida p
     with smtplib.SMTP_SSL(smtp_server, port, context=context) as server:
         server.login(sender_email, password)
 
-        argv_index = 2
-        if "2022" in argv[1]:
-            argv_index = 3
-
         try:
-            start_index = int(argv[argv_index])
+            start_index = int(argv[3])
         except:
             start_index = 0
         try:
-            end_index = int(argv[argv_index+1])
+            end_index = int(argv[4])
         except:
             end_index = -1
 
@@ -80,14 +76,17 @@ Alla Att.ne del DPO (Responsabile Protezione Dati) dell'Ente. Oggetto: Diffida p
             for line in f:
                 if count > 0 and count >= start_index:
                     if end_index != -1 and count > end_index:
-                        pass
+                        break
                     else:
                         fields = line.split('\t')
 
-                        msg = process(fields, message)
-                        if send_for_real.lower() == "true":
-                            # Rimpiazzare receiver_email con fields[16] quando si vuole mandare realmente le mail
-                            server.sendmail(sender_email, receiver_email, msg)
+                        if (int(fields[35]) == 1):
+                            msg = process(fields, message)
+
+                            if send_for_real.lower() == "true":
+                                # Rimpiazzare receiver_email con fields[19] quando si vuole mandare realmente le mail
+                                server.sendmail(
+                                    sender_email, receiver_email, msg)
 
                 count += 1
 

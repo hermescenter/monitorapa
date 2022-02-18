@@ -58,6 +58,14 @@
 - Updated PROGRESS.md to have information from the beginning of the project too and a current status section to see what we've done and what is missing.
 - Docker container (doesn't work)
 
+## 2022/02/18
+### \_Zaizen\_
+- Check that GA was found
+- Enti.tsv path instead of date
+
+### Shamar
+- Auto-accept cookies (thanks Mauro Gorrino)
+
 # Current status
 
 ## Folder structure

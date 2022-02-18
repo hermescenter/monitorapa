@@ -16,7 +16,7 @@ import commons
 
 def usage():
     print("""
-./cli/point3.py [date] check/test_to_run.js
+./cli/point3.py check/test_to_run.js out/202?-??-??/enti.tsv
 
 Will create out/YYYY-MM-DD/google_analytics/point3/enti.tsv
 """)
