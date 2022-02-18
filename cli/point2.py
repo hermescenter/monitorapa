@@ -17,8 +17,9 @@ import os.path
 import socket
 from urllib import parse
 
+if len(sys.argv) > 4 or len(sys.argv) < 2:
+    usage()
 outDir = commons.computeOutDir(sys.argv)
-
 
 def normalizeUrl(url):
     if not url.startswith('http'):
@@ -39,8 +40,6 @@ def looksValidUrl(url):
     return True
 
 # very loosy check: ideally only verify if the DNS can resolve the hostname
-
-
 def looksReachableUrl(url):
     try:
         split_url = parse.urlsplit(url)
@@ -49,6 +48,17 @@ def looksReachableUrl(url):
     except:
         return False
 
+def clickConsentButton(url, lineNum, driver):
+	# thanks Mauro Gorrino
+    consentPath = "//button[contains(translate(., 'ACET', 'acet'), 'accett')]"
+    buttons = driver.find_elements_by_xpath(consentPath)
+    for button in buttons:
+        try:
+            driver.execute_script("arguments[0].click()", button)
+            print("%s (%s): click on consent" % (url, lineNum))
+        except Exception:
+            pass
+    return len(buttons) > 0
 
 def saveError(lineNum, error):
     fname = '%s/%s.ERR.txt' % (outDir, lineNum)
@@ -96,12 +106,17 @@ def runCheck(pa, lineNum, script):
     try:
         driver.get(url)
         time.sleep(2)
+        consented = clickConsentButton(url, lineNum, driver)
         driver.execute_script(script)
         time.sleep(8)
         fname = '%s/%s.OK.txt' % (outDir, lineNum)
         with open(fname, 'w') as f:
             f.write(driver.title)
         print("%s: found '%s', saved in %s" % (url, driver.title, fname))
+        if consented == True:
+            fname = '%s/%s.CONSENT.txt' % (outDir, lineNum)
+            with open(fname, 'w') as f:
+                f.write("")
     except WebDriverException as err:
         saveError(lineNum, "%s\n%s" % (url, err))
     #time.sleep(100000)
@@ -116,8 +131,6 @@ def usage():
 
 
 def main(argv):
-    if len(argv) > 4 or len(argv) < 2:
-        usage()
 
     if "2022" in argv[1]:
         test = argv[2]
@@ -127,7 +140,10 @@ def main(argv):
     try:
         starting_index = int(argv[2])
     except:
-        starting_index = 0
+        try:
+            starting_index = int(argv[3])
+        except:
+            starting_index = 0
     count = 0
     with open(os.path.normpath(outDir + '/../../enti.tsv'), 'r') as f, open(test) as s:
         script = s.read()
