@@ -125,7 +125,7 @@ Supported format are `tsv` (the default, always produced) or `csv` (TODO) or `js
 
 ## Point 4
 ```
-python3 cli/point4.py check/google_analytics.js out/202?-??-??/enti.tsv [start_index] [end_index]
+python3 cli/point4.py check/google_analytics.js out/202?-??-??/enti.tsv time_to_wait_in_seconds [start_index] [end_index]
 ```
 
 Will send an email to the PAs that are still hosting the

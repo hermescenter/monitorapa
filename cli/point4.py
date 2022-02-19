@@ -12,11 +12,12 @@ import ssl
 import configparser
 import sys
 import commons
+import time
 
 
 def usage():
     print("""
-./cli/point4.py check/test_to_run.js out/202?-??-??/enti.tsv [start_index] [end_index]
+./cli/point4.py check/test_to_run.js out/202?-??-??/enti.tsv time_to_wait_in_seconds [start_index] [end_index]
 """)
     sys.exit(-1)
 
@@ -63,11 +64,15 @@ Alla Att.ne del DPO (Responsabile Protezione Dati) dell'Ente. Oggetto: Diffida p
         server.login(sender_email, password)
 
         try:
-            start_index = int(argv[3])
+            time_to_wait = int(argv[3])
+        except:
+            time_to_wait = 0
+        try:
+            start_index = int(argv[4])
         except:
             start_index = 0
         try:
-            end_index = int(argv[4])
+            end_index = int(argv[5])
         except:
             end_index = -1
 
@@ -87,6 +92,7 @@ Alla Att.ne del DPO (Responsabile Protezione Dati) dell'Ente. Oggetto: Diffida p
                                 # Rimpiazzare receiver_email con fields[19] quando si vuole mandare realmente le mail
                                 server.sendmail(
                                     sender_email, receiver_email, msg)
+                                time.sleep(time_to_wait)
 
                 count += 1
 

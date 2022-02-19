@@ -14,8 +14,18 @@ from selenium.common.exceptions import WebDriverException
 import time
 import sys
 import os.path
+from multiprocessing.pool import ThreadPool as Pool
+
 import socket
 from urllib import parse
+
+
+def usage():
+    print("""
+./cli/point2.py check/test_to_run.js out/202?-??-??/enti.tsv [starting_index]
+""")
+    sys.exit(-1)
+
 
 if len(sys.argv) > 4 or len(sys.argv) < 2:
     usage()
@@ -128,13 +138,6 @@ def runCheck(pa, lineNum, script):
     driver.quit()
 
 
-def usage():
-    print("""
-./cli/point2.py check/test_to_run.js out/202?-??-??/enti.tsv [starting_index]
-""")
-    sys.exit(-1)
-
-
 def main(argv):
 
     test = argv[1]
@@ -144,6 +147,8 @@ def main(argv):
     except:
         starting_index = 0
 
+    pool = Pool(10)
+
     count = 0
     with open(os.path.normpath(outDir + '/../../enti.tsv'), 'r') as f, open(test) as s:
         script = s.read()
@@ -152,12 +157,15 @@ def main(argv):
                 fields = line.split('\t')
 
                 try:
-                    runCheck(fields, count, script)
+                    pool.apply_async(runCheck, (fields, count, script))
                 except (KeyboardInterrupt):
                     print("Esco")
                     break
 
             count += 1
+
+    pool.close()
+    pool.join()
 
 
 if __name__ == "__main__":
