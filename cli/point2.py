@@ -26,7 +26,7 @@ def usage():
     sys.exit(-1)
 
 
-if len(sys.argv) > 4 or len(sys.argv) < 2:
+if len(sys.argv) > 5 or len(sys.argv) < 2:
     usage()
 outDir = commons.computeOutDir(sys.argv)
 
