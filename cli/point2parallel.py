@@ -59,7 +59,8 @@ def main(argv):
         if pid == 0:
             new_stdout = os.open("%s/point2.from-%s.pid-%s.txt" % (outDir, (start * chunk), os.getpid()), os.O_WRONLY|os.O_CREAT|os.O_TRUNC)
             os.dup2(new_stdout, 1)
-            os.execl(programToRun, programToRun, test, source, "%s" % (start * chunk), "%s" % chunk)
+            os.dup2(new_stdout, 2)
+            os.execlp("python3", "python3", "-u", programToRun, test, source, "%s" % (start * chunk), "%s" % chunk)
         else:
             print("pid %s: %s %s %s %s %s" % (pid, programToRun, test, source, (start * chunk), chunk))
             processes.append(pid)
