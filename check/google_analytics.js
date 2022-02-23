@@ -13,12 +13,15 @@ setTimeout(function(){
         gaName = "ga"
     if(window[gaName] && window[gaName].l){
         // fast track (thanks Augusto Zanellato)
+        console.log("found in window[gaName].q[0][1]", window[gaName].q[0][1]);
         document.title = window[gaName].q[0][1];
         return;
     }
     var html = document.all[0].innerHTML;
     var test = html.match(/ga\(['"]create['"], ['"]([^'"]*)['"]/);
-    if(!test){
+    if(test){
+        console.log(`found in html.match(/ga\(['"]create['"], ['"]([^'"]*)['"]/)`, test);
+    } else {
         var test = html.match(/ga\('create', {[^}]*}/gm);
         if(test){
             objStr = test[0];
@@ -26,13 +29,20 @@ setTimeout(function(){
             objStr = objStr.replace ('ga("create", ', 'window.MonitoraPAObj = ');
             eval(objStr);
             test[1] = window.MonitoraPAObj.trackingId;
+            console.log(`found in html.match(/ga\('create', {[^}]*}/gm);`, window.MonitoraPAObj);
         }
     }
     if(!test){
         test = html.match(/gtag\(['"]config['"], ['"]([^'"]*)['"]/);
+        if(test){
+            console.log(`found in html.match(/gtag\(['"]config['"], ['"]([^'"]*)['"]/)`, test);
+        }
     }
     if(!test){
-        test = html.match(/push\(\[['"]_setAccount['"], ['"]([^'"]*)['"]\]/)
+        test = html.match(/push\(\[['"]_setAccount['"], ['"]([^'"]*)['"]\]/);
+        if(test){
+            console.log(`found in html.match(/push\(\[['"]_setAccount['"], ['"]([^'"]*)['"]\]/)`, test);
+        }
     }
     if(!test){
         for(var sc of document.getElementsByTagName('script'))
@@ -45,6 +55,7 @@ setTimeout(function(){
                         var tId = content.match(/UA-[^'"]+/);
                         if(tId){
                             document.title = tId[0];
+                            console.log(`found in '${sc.src}'`, tId);
                         }
                     } 
                 }
@@ -55,4 +66,4 @@ setTimeout(function(){
     if(test){
         document.title = test[1];
     }
-}, 2000)
+}, 1000)
