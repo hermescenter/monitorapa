@@ -119,10 +119,12 @@ def runCheck(pa, lineNum, script):
 
     try:
         driver.get(url)
-        time.sleep(2)
+        time.sleep(4)
         consented = clickConsentButton(url, lineNum, driver)
+        if consented:
+            time.sleep(4)
         driver.execute_script(script)
-        time.sleep(8)
+        time.sleep(4)
         fname = '%s/%s.OK.txt' % (outDir, lineNum)
         with open(fname, 'w') as f:
             f.write(driver.title)
