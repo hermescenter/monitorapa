@@ -47,19 +47,24 @@ setTimeout(function(){
     if(!test){
         for(var sc of document.getElementsByTagName('script'))
             if(sc.src.indexOf('googletagmanager') > -1) {
-                var txtFile = new XMLHttpRequest();
-                txtFile.open("GET", sc.src, true);
-                txtFile.onreadystatechange = function(){  
-                    if (txtFile.readyState === 4) {
-                        var content = txtFile.responseText;
-                        var tId = content.match(/UA-[^'"]+/);
-                        if(tId){
-                            document.title = tId[0];
-                            console.log(`found in '${sc.src}'`, tId);
-                        }
-                    } 
+                test = sc.src.match(/UA-[^&]+/);
+                if(test){
+                    console.log(`found in '${sc.src}'`, test);
+                } else {
+                    var txtFile = new XMLHttpRequest();
+                    txtFile.open("GET", sc.src, true);
+                    txtFile.onreadystatechange = function(){  
+                        if (txtFile.readyState === 4) {
+                            var content = txtFile.responseText;
+                            var tId = content.match(/UA-[^'"]+/);
+                            if(tId){
+                                document.title = tId[0];
+                                console.log(`found inside '${sc.src}'`, tId);
+                            }
+                        } 
+                    }
+                    txtFile.send();
                 }
-                txtFile.send()
             }
     }
 
