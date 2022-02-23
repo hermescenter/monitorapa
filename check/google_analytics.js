@@ -44,12 +44,13 @@ setTimeout(function(){
             console.log(`found in html.match(/push\(\[['"]_setAccount['"], ['"]([^'"]*)['"]\]/)`, test);
         }
     }
-    if(!test){
+    if(!test || test[1].match(/_ID/)){
         for(var sc of document.getElementsByTagName('script'))
             if(sc.src.indexOf('googletagmanager') > -1) {
                 test = sc.src.match(/UA-[^&]+/);
                 if(test){
                     console.log(`found in '${sc.src}'`, test);
+                    test[1] = test[0]
                 } else {
                     var txtFile = new XMLHttpRequest();
                     txtFile.open("GET", sc.src, true);
