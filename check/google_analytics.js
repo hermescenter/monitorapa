@@ -18,7 +18,14 @@ setTimeout(function(){
         return;
     }
     var html = document.all[0].innerHTML;
-    var test = html.match(/ga\(['"]create['"], ['"]([^'"]*)['"]/);
+    var test = html.match(/UA-[0-9-]+/);
+    if(test){
+        // simplest possible regex test.
+        console.log("found in html.match(/UA-[0-9-]+/)", test);
+        test[1] = test[0];
+    } else {
+        test = html.match(/ga\(['"]create['"], ['"]([^'"]*)['"]/);
+    }
     if(test){
         console.log(`found in html.match(/ga\(['"]create['"], ['"]([^'"]*)['"]/)`, test);
     } else {
