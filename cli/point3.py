@@ -37,6 +37,9 @@ def getFields(lineNum, outDir):
         with open(fname, 'r') as f:
             content = f.read()
         if len(content) > 0:
+            if " " in content or "d" in content or "x" in content or "X" in content:
+                # website was WAY too slow or GA is somehow misconfigured
+                return (0, '', getDate(fname), getTime(fname))
             return (1, content, getDate(fname), getTime(fname))
         else:
             return (0, '', getDate(fname), getTime(fname))
@@ -48,14 +51,14 @@ def getFields(lineNum, outDir):
 
 
 def main(argv):
-    if len(argv) > 3:
+    if len(argv) != 3:
         usage()
 
     outDir = commons.computeOutDir(sys.argv)
     print(outDir)
 
     count = 0
-    with open(outDir + '/../../enti.tsv', 'r') as inf, open(outDir + '/enti.tsv', 'w') as outf:
+    with open(argv[2], 'r') as inf, open(outDir + '/enti.tsv', 'w') as outf:
         for line in inf:
             outf.write(line[:-1])
             if count == 0:
