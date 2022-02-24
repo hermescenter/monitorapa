@@ -119,7 +119,7 @@ def runCheck(pa, lineNum, script):
 
     try:
         driver.get(url)
-        time.sleep(4)
+        time.sleep(6)
         consented = clickConsentButton(url, lineNum, driver)
         if consented:
             time.sleep(4)
