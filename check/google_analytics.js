@@ -66,8 +66,13 @@ setTimeout(function(){
                             var content = txtFile.responseText;
                             var tId = content.match(/UA-[^'"]+/);
                             if(tId){
-                                document.title = tId[0];
-                                console.log(`found inside '${sc.src}'`, tId);
+                                if(tId.indexOf('d') != -1){
+                                    document.title = "GA PRESENT BUT MISCONFIGURED";
+                                    console.log(`found inside '${sc.src}'`, document.title);
+                                } else {
+                                    document.title = tId[0];
+                                    console.log(`found inside '${sc.src}'`, tId);
+                                }
                             }
                         } 
                     }
