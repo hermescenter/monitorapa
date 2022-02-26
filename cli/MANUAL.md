@@ -82,12 +82,12 @@ Downloads `out/YYYY-MM-DD/enti.tsv`
 ## Point 2
 
 ```
-python3 cli/point2.py check/google_analytics.js out/202?-??-??/enti.tsv [starting_index]
+python3 cli/point2.py check/google_analytics.js out/yyyy-mm-dd/enti.tsv [starting_index]
 ```
 
 If you want to redirect output:
 ```
-python3 cli/point2.py check/google_analytics.js out/202?-??-??/enti.tsv [starting_index] | unbuffer -p tee out/2022-02-13/point2.out
+python3 -u cli/point2.py check/google_analytics.js out/yyyy-mm-dd/enti.tsv [starting_index [count]] >> out/yyyy-mm-dd/point2.out
 ```
 
 Check for Google Analytics presence over all the website listed in
@@ -113,9 +113,17 @@ If GA is found, it will contains the tracking ID (or any other metadata)
 
 The file creation time will be used as the time of the test.
 
+Point 2 can also be run in several parallel chunk by using
+
+```
+python3 -u cli/point2parallel.py check/google_analytics.js out/yyyy-mm-dd/enti.tsv chunk_size >> out/yyyy-mm-dd/point2parallel.out
+```
+In out/yyyy-mm-dd/google_analytics/point2parallel/ several files will 
+log the progress of each execution.
+
 ## Point 3
 ```
-python3 cli/point3.py check/google_analytics.js out/202?-??-??/enti.tsv [format]
+python3 cli/point3.py check/google_analytics.js out/yyyy-mm-dd/enti.tsv [format]
 ```
 
 Will produce a new file `out/YYYY-MM-DD/google_analytics/point3/enti.[format]`
@@ -125,7 +133,7 @@ Supported format are `tsv` (the default, always produced) or `csv` (TODO) or `js
 
 ## Point 4
 ```
-python3 cli/point4.py check/google_analytics.js out/202?-??-??/enti.tsv time_to_wait_in_seconds [start_index] [end_index]
+python3 cli/point4.py check/google_analytics.js out/yyyy-mm-dd/enti.tsv time_to_wait_in_seconds [start_index] [end_index]
 ```
 
 Will send an email to the PAs that are still hosting the

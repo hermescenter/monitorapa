@@ -51,7 +51,7 @@ def computeOutDir(argv):
     if not "check/" in argv[1]:
         sys.exit("Missing GDPR compliance check.")
 
-    if not "out/202" in argv[2] or not "enti.tsv" in argv[2]:
+    if not "out/" in argv[2] or not "enti.tsv" in argv[2]:
         sys.exit("Missing enti.tsv path.")
 
     check = os.path.splitext(os.path.basename(argv[1]))[0]
@@ -61,5 +61,5 @@ def computeOutDir(argv):
     dirName = "%s/%s/%s" % (outDir, check, point)
 
     if not os.path.isdir(dirName):
-        os.makedirs(dirName, 0o766)
+        os.makedirs(dirName, 0o755)
     return dirName

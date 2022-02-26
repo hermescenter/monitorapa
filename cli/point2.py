@@ -14,7 +14,6 @@ from selenium.common.exceptions import WebDriverException
 import time
 import sys
 import os.path
-from multiprocessing.pool import ThreadPool as Pool
 
 import socket
 from urllib import parse
@@ -22,12 +21,12 @@ from urllib import parse
 
 def usage():
     print("""
-./cli/point2.py check/test_to_run.js out/202?-??-??/enti.tsv [starting_index]
+./cli/point2.py check/test_to_run.js out/202?-??-??/enti.tsv [starting_index [count]] 
 """)
     sys.exit(-1)
 
 
-if len(sys.argv) > 4 or len(sys.argv) < 2:
+if len(sys.argv) > 5 or len(sys.argv) < 2:
     usage()
 outDir = commons.computeOutDir(sys.argv)
 
@@ -120,10 +119,12 @@ def runCheck(pa, lineNum, script):
 
     try:
         driver.get(url)
-        time.sleep(2)
+        time.sleep(6)
         consented = clickConsentButton(url, lineNum, driver)
+        if consented:
+            time.sleep(4)
         driver.execute_script(script)
-        time.sleep(8)
+        time.sleep(4)
         fname = '%s/%s.OK.txt' % (outDir, lineNum)
         with open(fname, 'w') as f:
             f.write(driver.title)
@@ -141,31 +142,36 @@ def runCheck(pa, lineNum, script):
 def main(argv):
 
     test = argv[1]
+    source = argv[2]
 
     try:
         starting_index = int(argv[3])
     except:
         starting_index = 0
 
-    pool = Pool(10)
+    try:
+        end_index = int(argv[4]) + starting_index
+    except:
+        end_index = -1
+
 
     count = 0
-    with open(os.path.normpath(outDir + '/../../enti.tsv'), 'r') as f, open(test) as s:
+    with open(source, 'r') as f, open(test) as s:
         script = s.read()
         for line in f:
             if count > 0 and count >= starting_index:
                 fields = line.split('\t')
 
                 try:
-                    pool.apply_async(runCheck, (fields, count, script))
+                    runCheck(fields, count, script)
                 except (KeyboardInterrupt):
                     print("Esco")
                     break
 
             count += 1
+            if end_index > 0 and count > end_index:
+                break
 
-    pool.close()
-    pool.join()
 
 
 if __name__ == "__main__":
