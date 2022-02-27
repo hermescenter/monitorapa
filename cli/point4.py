@@ -42,10 +42,33 @@ def main(argv):
 
     outDir = commons.computeOutDir(sys.argv)
 
-    message = """\
-Subject: Diffida per violazione della normativa in materia privacy, Regolamento UE 679/2016 e norme applicative, per utilizzo Google Analytics su $cod_amm
+    message = """Subject: Diffida per violazione del GDPR per utilizzo Google Analytics su sito istituzionale
 
-Alla Att.ne del DPO (Responsabile Protezione Dati) dell'Ente. Oggetto: Diffida per violazione del GDPR per utilizzo Google Analytics su sito istituzionale La presente comunicazione valga come formale diffida, per segnalare violazione del Regolamento Ue 679/2016 in materia privacy, posta in essere dal vs. Ente $des_amm con responsabile Dott. $nome_resp $cogn_resp derivante dall'utilizzo presso il sito $sito_istituzionale del fornitore Google, secondo quanto confermato dalla decisione dell'EDPS nell'arrivare a sanzionare il Parlamento Europeo per l'uso dello strumento Google Analytics come indicato in seguito https://noyb.eu/en/edps-sanctions-parliament-over-eu-us-data-transfers-google-and-stripe . La presente viene inviata in via informativa per consentire una rapida rimozione di Google Analytics, rimandando raccomandato dalla Agenzia per l'Italia Digitale Web Analytics Italia https://www.agid.gov.it/it/design-servizi/web-analytics-italia . Il rendiconto delle Pubbliche Amministrazioni in violazione viene pubblicato come report e inviato come segnalazione al Garante per la Protezione dei Dati e al Difensore Civico Digitale."""
+Alla Att.ne del DPO (Responsabile Protezione Dati) dell'Ente.
+
+Diffida per violazione della normativa in materia privacy, Regolamento
+UE 679/2016 e norme applicative, per utilizzo Google Analytics su
+$cod_amm 
+
+
+La presente comunicazione valga come formale diffida, per segnalare
+violazione del Regolamento Ue 679/2016 in materia privacy, posta in
+essere dal vs. Ente $des_amm con responsabile Dott. $nome_resp
+$cogn_resp derivante dall'utilizzo presso il sito $sito_istituzionale
+del fornitore Google, secondo quanto confermato dalla decisione
+dell'EDPS nell'arrivare a sanzionare il Parlamento Europeo per l'uso
+dello strumento Google Analytics come indicato in seguito
+https://noyb.eu/en/edps-sanctions-parliament-over-eu-us-data-transfers-google-and-stripe
+
+La presente viene inviata in via informativa per consentire una
+rapida rimozione di Google Analytics, rimandando raccomandato dalla
+Agenzia per l'Italia Digitale Web Analytics Italia
+https://www.agid.gov.it/it/design-servizi/web-analytics-italia
+
+Il rendiconto delle Pubbliche Amministrazioni in violazione viene
+pubblicato come report e inviato come segnalazione al Garante per la
+Protezione dei Dati e al Difensore Civico Digitale.
+"""
 
     configParser = configparser.RawConfigParser()
     configParser.read('./cli/point4.cfg')
