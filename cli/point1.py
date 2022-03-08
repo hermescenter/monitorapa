@@ -18,3 +18,4 @@ r = requests.get(url, allow_redirects=True)
 result = r.content.replace(
     b'HTTPS:SISTEMAAMBIENTELUCCA.IT', b'HTTPS://SISTEMAAMBIENTELUCCA.IT')
 open("%s/enti.tsv" % outDir, 'wb').write(result)
+print("%s/enti.tsv" % outDir)

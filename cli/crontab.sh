@@ -6,7 +6,7 @@ if [ "x" == "x$LOG" ]; then
     LOG="out/monitorapa.$PID.$DATE.log"
 fi
 
-CURRENT_DIR=$(./cli/point1.py |tee -a $LOG|awk '{print $4}')
+CURRENT_DIR=$(./cli/point1.py |tee -a $LOG)
 
 if [ ! -f "$CURRENT_DIR/enti.tsv" ]; then
     echo "Error in point1: no enti.tsv in $CURRENT_DIR" | tee -a $LOG

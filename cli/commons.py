@@ -40,7 +40,7 @@ def computeOutDir(argv):
         dirName = "out/%s" % datetime.datetime.utcnow().strftime("%Y-%m-%d")
         if not os.path.isdir(dirName):
             os.mkdir(dirName)
-            print("Created output dir %s" % dirName)
+            #print("Created output dir %s" % dirName)
         if not os.path.isfile(os.path.join(dirName, "LICENSE.txt")):
             shutil.copy(os.path.abspath("LICENSE.txt"),
                         os.path.abspath(dirName))
