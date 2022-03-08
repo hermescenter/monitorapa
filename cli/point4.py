@@ -46,28 +46,33 @@ def main(argv):
 
 Alla Att.ne del DPO (Responsabile Protezione Dati) dell'Ente.
 
-Diffida per violazione della normativa in materia privacy, Regolamento
-UE 679/2016 e norme applicative, per utilizzo Google Analytics su
-$cod_amm 
+Diffida per per l'illecito utilizzo di Google Analytics su
+$cod_amm, in violazione del Regolamento generale sulla protezione dei dati personali 2016/679 (GDPR)
+
+Spett.le Ente,
+siamo
+# (qui metterei due righe di presentazione).
+Abbiamo rilevato che il vostro Ente utilizza Google analytics (GA) nel suo sito $sito_istituzionale, nonostante sia oramai pacifico che questo strumento non sia conforme ai principi del GDPR in ordine al trasferimento transfrontaliero di dati  personali.
+L'utilizzo di GA è infatti stato ritenuto illecito dall'EDPS, con riguardo al trattamento dei dati operato dal Parlamento europeo, dall'Autorità di controllo austriaca e da da ultimo da quella francese (si veda in sintesi https://noyb.eu/en/edps-sanctions-parliament-over-eu-us-data-transfers-google-and-stripe).
+
+Riteniamo che il mantenimento, da parte dell'Ente, di un trattamento di dati personali così evidentemente illecito, che comporta un ingiustificato e massivo trasferimento trasfrontaliero di dati personali, riguardante tutti gli utenti del sito $sito_istituzionale, costituisca una grave violazione che debba immediatamente cessare.
+Invitiamo pertanto a voler immediatamente provvedere alla rimozione di GA e di qualsiasi altro strumento di analytics o tracking che produca effetti analoghi.
+
+La suddetta violazione, imputabile al Vs. Ente $des_amm, quale titolare del trattamento, in persona del legale rapp.te pro tempore $nome_resp
+$cogn_resp espone l'Ente stesso alle sanzioni amministrative pecuniarie previste dall'art. 83 del GDPR.
+
+#  $nome_resp e $cogn_resp è il legale rapp.te? oppure chi?
 
 
-La presente comunicazione valga come formale diffida, per segnalare
-violazione del Regolamento Ue 679/2016 in materia privacy, posta in
-essere dal vs. Ente $des_amm con responsabile Dott. $nome_resp
-$cogn_resp derivante dall'utilizzo presso il sito $sito_istituzionale
-del fornitore Google, secondo quanto confermato dalla decisione
-dell'EDPS nell'arrivare a sanzionare il Parlamento Europeo per l'uso
-dello strumento Google Analytics come indicato in seguito
-https://noyb.eu/en/edps-sanctions-parliament-over-eu-us-data-transfers-google-and-stripe
-
-La presente viene inviata in via informativa per consentire una
-rapida rimozione di Google Analytics, rimandando raccomandato dalla
+La presente viene inviata in via informativa, proprio al fine di consentire una
+rapida rimozione di Google Analytics, rimandando a quanto raccomandato dalla
 Agenzia per l'Italia Digitale Web Analytics Italia
 https://www.agid.gov.it/it/design-servizi/web-analytics-italia
 
-Il rendiconto delle Pubbliche Amministrazioni in violazione viene
+Il resoconto complessivo delle Pubbliche Amministrazioni in violazione, con particolare riguardo a quelle che non avranno provveduto alla tempestiva rimozione di GA, verrà
 pubblicato come report e inviato come segnalazione al Garante per la
 Protezione dei Dati e al Difensore Civico Digitale.
+
 """
 
     configParser = configparser.RawConfigParser()
