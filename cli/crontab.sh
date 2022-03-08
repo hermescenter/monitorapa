@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 LOG="$1"
 if [ "x" == "x$LOG" ]; then
