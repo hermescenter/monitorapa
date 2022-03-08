@@ -51,8 +51,10 @@ $cod_amm, in violazione del
 Regolamento generale sulla protezione dei dati personali 2016/679 (GDPR)
 
 Spett.le Ente,
-siamo
-# (qui metterei due righe di presentazione).
+siamo un gruppo di hacker italiani, attiviste e attivisti, cittadine e
+cittadini attenti alla privacy ed alla tutela dei diritti cibernetici
+nel nostro Paese.
+
 Abbiamo rilevato che il vostro Ente utilizza Google analytics (GA) 
 nel suo sito $sito_istituzionale, nonostante sia oramai pacifico 
 che questo strumento non sia conforme ai principi del GDPR in ordine
