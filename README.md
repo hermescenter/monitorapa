@@ -16,6 +16,8 @@ MonitoraPA is composed of several components.
   
 - A catalogue of compliance checks (in JavaScript, run by Selenium)
   in [check/](./check/).
+  
+- A minimal website about the project in [web/](./web/)
 
 # Authors, Copyright and Licensing
 
