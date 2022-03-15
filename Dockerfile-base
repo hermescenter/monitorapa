@@ -1,0 +1,6 @@
+FROM debian:11
+
+WORKDIR /usr/src/app
+
+RUN apt update && apt install -y python3-pip python3-venv chromium-driver python3-selenium
+CMD /bin/bash
