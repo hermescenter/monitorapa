@@ -1,4 +1,5 @@
 out/*
+web/*.zip
 .venv
 cli/point4.cfg
 
