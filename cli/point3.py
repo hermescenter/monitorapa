@@ -12,13 +12,14 @@ import time
 import sys
 import os.path
 import commons
+import json
 
 
 def usage():
     print("""
-./cli/point3.py check/test_to_run.js out/202?-??-??/enti.tsv
+./cli/point3.py check/test_to_run.js out/202?-??-??/enti.tsv [format]
 
-Will create out/YYYY-MM-DD/google_analytics/point3/enti.tsv
+Will create out/YYYY-MM-DD/google_analytics/point3/enti.[format] (default format is TSV)
 """)
     sys.exit(-1)
 
@@ -50,16 +51,9 @@ def getFields(lineNum, outDir):
         return (0, '', '', '')
 
 
-def main(argv):
-    if len(argv) != 3:
-        usage()
-
-    outDir = commons.computeOutDir(sys.argv)
-    print(outDir)
-
-    count = 0
-    with open(argv[2], 'r') as inf, open(outDir + '/enti.tsv', 'w') as outf:
-        for line in inf:
+def process_tsv(inf, outf, outDir):
+     count = 0
+     for line in inf:
             outf.write(line[:-1])
             if count == 0:
                 outf.write(
@@ -67,8 +61,50 @@ def main(argv):
             else:
                 outf.write("\t%s\t%s\t%s\t%s\n" % getFields(count, outDir))
             count += 1
-#            if count > 120:
-#                break
+
+
+def process_json(inf, outf, outDir):
+    result = {}
+    count = 0
+    fields_names = []
+    for line in inf:
+        fields = line.split('\t')
+        if count == 0 :
+            fields_names = fields
+        else:    
+            result[fields[1]] = {}
+            index = 0
+            for field_name in fields_names:
+                result[fields[1]][field_name] = fields[index]
+                index += 1
+            
+            extra_fields = getFields(count, outDir)
+            result[fields[1]]["web_test_result"] = extra_fields[0]
+            result[fields[1]]["web_test_metadata"] = extra_fields[1]
+            result[fields[1]]["web_test_date"] = extra_fields[2]
+            result[fields[1]]["web_test_time"] = extra_fields[3]
+            
+        count += 1
+    
+    outf.write(json.dumps(result))
+
+
+
+def main(argv):
+    if len(argv) > 4:
+        usage()
+
+    outDir = commons.computeOutDir(sys.argv)
+    print(outDir)
+
+    format = "tsv"
+
+    if argv[3]:
+        format = argv[3]
+
+   
+    with open(argv[2], 'r') as inf, open(outDir + '/enti.'+format, 'w') as outf:
+        globals()['process_'+format](inf, outf, outDir)
 
 
 if __name__ == "__main__":
