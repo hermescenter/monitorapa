@@ -20,6 +20,8 @@ def usage():
 ./cli/point3.py check/test_to_run.js out/202?-??-??/enti.tsv [format]
 
 Will create out/YYYY-MM-DD/google_analytics/point3/enti.[format] (default format is TSV)
+
+Format options: tsv, json
 """)
     sys.exit(-1)
 
@@ -89,7 +91,6 @@ def process_json(inf, outf, outDir):
     outf.write(json.dumps(result))
 
 
-
 def main(argv):
     if len(argv) > 4:
         usage()
@@ -100,6 +101,8 @@ def main(argv):
     format = "tsv"
 
     if argv[3]:
+        if argv[3] != "json" and argv[3] != "tsv":
+            usage()
         format = argv[3]
 
    

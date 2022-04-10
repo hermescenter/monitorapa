@@ -66,6 +66,10 @@
 ### Shamar
 - Auto-accept cookies (thanks Mauro Gorrino)
 
+## 2022/04/11
+### \_Zaizen\_
+- Export JSON from point3
+
 # Current status
 
 ## Folder structure
@@ -106,7 +110,7 @@ monitorapa
 
 ## Point3
 
-- Process point2 output and generate a new enti.tsv in the appropriate folder (see [MANUAL.md](https://github.com/hermescenter/monitorapa/blob/main/cli/MANUAL.md)).
+- Process point2 output and generate a new enti.[format] in the appropriate folder (see [MANUAL.md](https://github.com/hermescenter/monitorapa/blob/main/cli/MANUAL.md)). You can choose the export format between json and tsv (default).
 
 ## Folder structure after Point1, Point2 and Point3
 
