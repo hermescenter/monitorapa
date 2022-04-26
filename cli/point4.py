@@ -8,6 +8,8 @@
 # conditions of the Hacking License (see LICENSE.txt)
 
 import smtplib
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
 import ssl
 import configparser
 import sys
@@ -42,9 +44,8 @@ def main(argv):
 
     outDir = commons.computeOutDir(sys.argv)
 
-    message = """Subject: Diffida per violazione del GDPR per utilizzo Google Analytics su sito istituzionale
-
-Alla Att.ne del DPO (Responsabile Protezione Dati) dell'Ente.
+    subject = "Diffida per violazione del GDPR per utilizzo Google Analytics su sito istituzionale"
+    message = """Alla Att.ne del DPO (Responsabile Protezione Dati) dell'Ente.
 
 Diffida per per l'illecito utilizzo di Google Analytics su
 $cod_amm, in violazione del 
@@ -103,8 +104,7 @@ al Difensore Civico Digitale.
     password = str(config['password'])
     receiver_email = str(config['debug_receiver_email'])
 
-    context = ssl.create_default_context()
-    with smtplib.SMTP_SSL(smtp_server, port, context=context) as server:
+    with smtplib.SMTP_SSL(smtp_server, port) as server:
         server.login(sender_email, password)
 
         try:
@@ -134,9 +134,20 @@ al Difensore Civico Digitale.
 
                             if send_for_real.lower() == "true":
                                 # Rimpiazzare receiver_email con fields[19] quando si vuole mandare realmente le mail
+                                final_msg=MIMEMultipart()
+                                final_msg['From']=sender_email
+                                final_msg['To']=receiver_email
+                                final_msg['Subject']=subject
+                                final_msg.attach(MIMEText(msg, 'plain'))
+                                text=final_msg.as_string()
+
+                                print(fields[19])
+                                print(receiver_email)
                                 server.sendmail(
-                                    sender_email, receiver_email, msg)
+                                    sender_email, receiver_email, text)
+                   
                                 time.sleep(time_to_wait)
+                                
 
                 count += 1
 

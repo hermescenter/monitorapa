@@ -70,6 +70,10 @@
 ### \_Zaizen\_
 - Export JSON from point3
 
+## 2022/04/11
+### \_Zaizen\_
+- Send PEC mail successfully
+
 # Current status
 
 ## Folder structure
