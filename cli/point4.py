@@ -8,13 +8,14 @@
 # conditions of the Hacking License (see LICENSE.txt)
 
 import smtplib
-from email.mime.multipart import MIMEMultipart
-from email.mime.text import MIMEText
+#from email.mime.multipart import MIMEMultipart
+#from email.mime.text import MIMEText
 import ssl
 import configparser
 import sys
 import commons
 import time
+from email.message import EmailMessage
 
 
 def usage():
@@ -121,7 +122,8 @@ al Difensore Civico Digitale.
             end_index = -1
 
         count = 0
-        with open(outDir + '/../point3/enti.tsv', 'r') as f:
+        with open(outDir + '/../point3/enti.tsv', 'r') as f, open(outDir + '/../point4/log.tsv', 'w') as logf:
+            logf.write("Codice_IPA\tMail1\tSito_istituzionale\n")
             for line in f:
                 if count > 0 and count >= start_index:
                     if end_index != -1 and count > end_index:
@@ -134,18 +136,19 @@ al Difensore Civico Digitale.
 
                             if send_for_real.lower() == "true":
                                 # Rimpiazzare receiver_email con fields[19] quando si vuole mandare realmente le mail
-                                final_msg=MIMEMultipart()
+                                final_msg = EmailMessage()
                                 final_msg['From']=sender_email
                                 final_msg['To']=receiver_email
+                                final_msg['Cc']=sender_email #Per vedere le mail che mandiamo, Bcc non pare essere accettato.
                                 final_msg['Subject']=subject
-                                final_msg.attach(MIMEText(msg, 'plain'))
-                                text=final_msg.as_string()
+                                final_msg.set_content(msg)
 
                                 print(fields[19])
                                 print(receiver_email)
-                                server.sendmail(
-                                    sender_email, receiver_email, text)
-                   
+                              
+                                server.send_message(final_msg)
+                                logf.write("%s\t%s\t%s\n" % (fields[1], receiver_email, fields[29]))
+                            
                                 time.sleep(time_to_wait)
                                 
 
