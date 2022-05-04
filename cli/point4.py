@@ -20,7 +20,7 @@ from email.message import EmailMessage
 
 def usage():
     print("""
-./cli/point4.py check/test_to_run.js out/202?-??-??/enti.tsv time_to_wait_in_seconds [start_index] [end_index]
+./cli/point4.py check/test_to_run.js out/202?-??-??/enti.tsv time_to_wait_in_seconds
 """)
     sys.exit(-1)
 
@@ -112,45 +112,41 @@ al Difensore Civico Digitale.
             time_to_wait = int(argv[3])
         except:
             time_to_wait = 0
-        try:
-            start_index = int(argv[4])
-        except:
-            start_index = 0
-        try:
-            end_index = int(argv[5])
-        except:
-            end_index = -1
-
+        
         count = 0
-        with open(outDir + '/../point3/enti.tsv', 'r') as f, open(outDir + '/../point4/log.tsv', 'w') as logf:
-            logf.write("Codice_IPA\tMail1\tSito_istituzionale\n")
+        out_count = 1
+        with open(outDir + '/../point3/enti.tsv', 'r') as f, open(outDir + '/../point4/log.tsv', 'r+') as logf:
+            length = len(logf.readlines())
+            if length == 0:   
+                logf.write("Codice_IPA\tMail1\tSito_istituzionale\n")
+            else:
+                out_count = length + 3
+
+
             for line in f:
-                if count > 0 and count >= start_index:
-                    if end_index != -1 and count > end_index:
-                        break
-                    else:
-                        fields = line.split('\t')
+                if count >= out_count:
+                  
+                    fields = line.split('\t')
 
-                        if (int(fields[35]) == 1):
-                            msg = process(fields, message)
+                    if (int(fields[35]) == 1):
+                        msg = process(fields, message)
 
-                            if send_for_real.lower() == "true":
-                                # Rimpiazzare receiver_email con fields[19] quando si vuole mandare realmente le mail
-                                final_msg = EmailMessage()
-                                final_msg['From']=sender_email
-                                final_msg['To']=receiver_email
-                                final_msg['Cc']=sender_email #Per vedere le mail che mandiamo, Bcc non pare essere accettato.
-                                final_msg['Subject']=subject
-                                final_msg.set_content(msg)
+                        if send_for_real.lower() == "true":
+                            # Rimpiazzare receiver_email con fields[19] quando si vuole mandare realmente le mail
+                            final_msg = EmailMessage()
+                            final_msg['From']=sender_email
+                            final_msg['To']=receiver_email
+                            final_msg['Cc']=sender_email #Per vedere le mail che mandiamo, Bcc non pare essere accettato.
+                            final_msg['Subject']=subject
+                            final_msg.set_content(msg)
 
-                                print(fields[19])
-                                print(receiver_email)
-                              
-                                server.send_message(final_msg)
-                                logf.write("%s\t%s\t%s\n" % (fields[1], receiver_email, fields[29]))
+                            print(fields[19])
+                            print(receiver_email)
                             
-                                time.sleep(time_to_wait)
-                                
+                            #server.send_message(final_msg)
+                            logf.write("%s\t%s\t%s\n" % (fields[1], receiver_email, fields[29]))
+                        
+                            time.sleep(time_to_wait)
 
                 count += 1
 
