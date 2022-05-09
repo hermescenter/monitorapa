@@ -100,7 +100,7 @@ def main(argv):
 
     format = "tsv"
 
-    if argv[3]:
+    if len(argv) > 3 and argv[3]:
         if argv[3] != "json" and argv[3] != "tsv":
             usage()
         format = argv[3]
