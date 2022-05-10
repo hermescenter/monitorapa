@@ -55,7 +55,7 @@ Regolamento generale sulla protezione dei dati personali 2016/679 (GDPR)
 Spett.le Ente,
 siamo un gruppo di hacker italiani, attiviste e attivisti, cittadine e
 cittadini attenti alla privacy ed alla tutela dei diritti cibernetici
-nel nostro Paese.
+nel nostro Paese: https://privacy.g0v.it
 
 Abbiamo rilevato che il vostro Ente utilizza Google analytics (GA) 
 nel suo sito $sito_istituzionale, nonostante sia oramai pacifico 
