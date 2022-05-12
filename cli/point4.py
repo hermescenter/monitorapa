@@ -135,8 +135,8 @@ al Difensore Civico Digitale.
                             # Rimpiazzare receiver_email con fields[19] quando si vuole mandare realmente le mail
                             final_msg = EmailMessage()
                             final_msg['From']=sender_email
-                            final_msg['To']=receiver_email
-                            final_msg['Cc']=sender_email #Per vedere le mail che mandiamo, Bcc non pare essere accettato.
+                            final_msg['To']=fields[19] #per provare in debug: receiver_email
+                            #final_msg['Cc']=sender_email #Per vedere le mail che mandiamo, Bcc non pare essere accettato.
                             final_msg['Subject']=subject
                             final_msg.set_content(msg)
 
