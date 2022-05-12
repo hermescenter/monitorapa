@@ -8,6 +8,7 @@
 # MonitoraPA is a hack. You can use it according to the terms and
 # conditions of the Hacking License (see LICENSE.txt)
 
+from fileinput import filename
 import time
 import sys
 import os.path
@@ -73,7 +74,7 @@ def process_sql(inf, outf, outDir):
         if count == 0:
             create_table_str = "CRATE TABLE IF NOT EXISTS point3 ( "
             create_table_str += "Codice_IPA varchar(7) PRIMARY KEY not null, " #Codice identificativo
-            create_table_str += "_id int not null AUTO_INCREMENT, " #numeri incrementali
+            create_table_str += "_id int not null AUTO_INCREMENT unique, " #numeri incrementali
             create_table_str += "Denominazione_ente varchar(255) not null, " #Stringa
             create_table_str += "Codice_fiscale_ente int not null, "  #11 numeri
             create_table_str += "Tipologia varchar(255) not null," #Stringa
@@ -151,6 +152,7 @@ def process_json(inf, outf, outDir):
                 index += 1
             
             extra_fields = getFields(count, outDir)
+            
             result[fields[1]]["web_test_result"] = extra_fields[0]
             result[fields[1]]["web_test_metadata"] = extra_fields[1]
             result[fields[1]]["web_test_date"] = extra_fields[2]
@@ -176,7 +178,7 @@ def main(argv):
         format = argv[3]
 
    
-    with open(argv[2], 'r') as inf, open(outDir + '/enti.'+format, 'w') as outf:
+    with open(argv[2], 'r', encoding='utf-8-sig') as inf, open(outDir + '/enti.'+format, 'w') as outf:
         globals()['process_'+format](inf, outf, outDir)
 
 
