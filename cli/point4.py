@@ -144,7 +144,7 @@ al Difensore Civico Digitale.
                             print(receiver_email)
                             
                             server.send_message(final_msg)
-                            logf.write("%s\t%s\t%s\n" % (fields[1], receiver_email, fields[29]))
+                            logf.write("%s\t%s\t%s\n" % (fields[1], fields[19], fields[29]))
                         
                             time.sleep(time_to_wait)
 
