@@ -121,7 +121,7 @@ def process_sql(inf, outf, outDir):
 
             for i in range(len(line_values)):
                 if i != 0:
-                    insert_str += "'" + line_values[i] + "',"
+                    insert_str += "`" + line_values[i] + "`,"
             
             fields = getFields(count, outDir)
             for field in fields:
