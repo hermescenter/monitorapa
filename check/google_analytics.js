@@ -9,7 +9,7 @@
 setTimeout(function(){
     document.title = "";
     var gaName = window.GoogleAnalyticsObject;
-    if(!!gaName)
+    if(!gaName)
         gaName = "ga"
     if(window[gaName] && window[gaName].l){
         // fast track (thanks Augusto Zanellato)
