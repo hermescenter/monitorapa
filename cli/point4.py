@@ -63,7 +63,7 @@ che questo strumento non sia conforme ai principi del GDPR in ordine
 al trasferimento transfrontaliero di dati personali.
 L'utilizzo di GA è infatti stato ritenuto illecito dall'EDPS, 
 con riguardo al trattamento dei dati operato dal Parlamento europeo, 
-dall'Autorità di controllo austriaca e da da ultimo da quella francese 
+dall'Autorità di controllo austriaca e da ultimo da quella francese 
 (si veda in sintesi https://noyb.eu/en/edps-sanctions-parliament-over-eu-us-data-transfers-google-and-stripe).
 
 Riteniamo che il mantenimento, da parte dell'Ente, di un trattamento 
