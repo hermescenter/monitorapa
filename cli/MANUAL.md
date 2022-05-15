@@ -50,7 +50,6 @@ Activate your environment:
   ```bash
   . .venv/bin/activate
   ```
-```
 
 Install the required packages:
 ```bash
