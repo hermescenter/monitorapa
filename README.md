@@ -19,6 +19,9 @@ MonitoraPA is composed of several components.
   
 - A minimal website about the project in [web/](./web/)
 
+- Some datasets to further extend the reach and impact of the project
+  in [datasets/](./datasets/)
+
 # Authors, Copyright and Licensing
 
 MonitoraPA has been created by several [AUTHORS](./AUTHORS.md).
