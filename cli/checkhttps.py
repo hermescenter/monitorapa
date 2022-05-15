@@ -2,17 +2,19 @@ import csv
 import requests
 import datetime
 import time
-from urllib import parse
-from requests.exceptions import ConnectionError
-from requests.exceptions import Timeout
 
 def check_url(url, timeout):
     try:
-        request = requests.get(url, timeout=timeout)
-    except Timeout:
-        return 0, "Timeout"
-    except ConnectionError:
-        return 0, "ConnectionError"
+        request = requests.get(url, timeout=timeout, allow_redirects=False)
+        # request.raise_for_status()
+    except requests.exceptions.HTTPError as errh:
+        return 0, "Http Error:" + str(errh)
+    except requests.exceptions.ConnectionError as errc:
+        return 0, "Error Connecting:" + str(errc)
+    except requests.exceptions.Timeout as errt:
+        return 0, "Timeout Error:" + str(errt)
+    except requests.exceptions.RequestException as err:
+        return 0, "OOps: Something Else" + str(err)
     except:
         return 0, "Error"
     else:
@@ -44,15 +46,15 @@ def load_tsv():
 
 load_tsv()
 first_line_header_tsv = True
-
+filename_output = "../out/output.tsv"
 # Create file output
-f = open("output.tsv", "w", encoding='UTF8', newline='').close()
+f = open(filename_output, "w", encoding='UTF8', newline='').close()
 
 reader = csv.reader( open("enti.tsv", "r", encoding='UTF8'), delimiter="\t" )
 for row in reader:
     
     # Open file to append data
-    f = open("output.tsv", "a", encoding='UTF8', newline='')
+    f = open(filename_output, "a", encoding='UTF8', newline='')
     w = csv.writer(f, delimiter="\t")
 
     des = row[2]
