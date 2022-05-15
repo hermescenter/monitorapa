@@ -26,6 +26,8 @@ def check_url(url, timeout):
         return 0, "Timeout Error"
     except requests.exceptions.RequestException:
         return 0, "Ops: Something Else"
+    except requests.packages.urllib3.exceptions.LocationParseError:
+        return 0, "Url not valid"
     else:
         return 1, request
 
@@ -120,9 +122,11 @@ for row in reader:
     check_https, code_https = check_url(url_https, 4)
     
     print("--- --- --- --- --- --- ---")
-    print(des[0:60], "\t" , url)
+    print(des[0:60])
     print(url_http, " : ", check_http, code_http)
     print(url_https, " : ", check_https, code_https)
+
+    time.sleep(0.25)
 
     row_tsv = [des, tip, url, check_date, check_http, check_https]
     
