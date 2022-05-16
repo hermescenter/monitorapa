@@ -40,8 +40,8 @@ just learned how to code.
 
 Do NOT try to solve problems that you haven't measured before.
 
-Do NOT apply "enterprise best practice". We are not a company.  
-Do NOT try to show us how smart you are. We don't give a shit.
+Do NOT apply any "enterprise best practice". We are not a company.  
+Do NOT try to show us how smart you are. We don't care.
 
 Avoid dependencies.
 
