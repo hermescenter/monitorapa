@@ -142,3 +142,13 @@ The list of PAs to mail will be read in the output file of `cli/point3.py`
 The sender mail and SMTP server must be configured in a configuration
 file named `cli/point4.cfg` that must be kept secret.
 A sample (mock) configuration is provided in `cli/point4_sample.cfg`
+
+
+# Docker setup
+
+Getting started with docker is super easy, the only requirements are docker and docker-compose.
+To setup the environment just run the script docker.sh like this:
+```bash
+./docker.sh
+```
+The first time you run the script you should answer Y so that the image will be generated otherwise it will fail. When the script is done you will be inside your container with everything you need to try our code.

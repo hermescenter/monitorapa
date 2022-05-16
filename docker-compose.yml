@@ -2,13 +2,16 @@ version: '1.0'
 
 services:
     monitorapa:
+        container_name: monitorapa
         image: monitorapa
         build:
             context: .
             dockerfile: ./Dockerfile
 
         volumes:
-            - ./out:./check/out
-        #  - ./cli:/usr/src/app/cli
-        #  - ./check:/usr/src/app/check
+            - .:/usr/src/app/monitorapa
+            #- ./cli:/usr/src/app/monitorapa/cli
+            #- ./check:/usr/src/app/monitorapa/check
         restart: unless-stopped
+        stdin_open: true
+        tty: true

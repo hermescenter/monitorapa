@@ -74,6 +74,10 @@
 ### \_Zaizen\_
 - Send PEC mail successfully
 
+## 2022/05/16
+### \_Zaizen\_
+- Docker environment properly working.
+
 # Current status
 
 ## Folder structure
