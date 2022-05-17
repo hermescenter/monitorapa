@@ -5,4 +5,4 @@ case $yn in
   n|N) docker build -t monitor-base -f Dockerfile . ;; 
   *) echo type y or n ;; 
 esac
-docker-compose up -d && docker attach monitorapa
+docker-compose up -d --build && docker attach monitorapa
