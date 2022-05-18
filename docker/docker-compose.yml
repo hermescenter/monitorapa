@@ -9,7 +9,7 @@ services:
             dockerfile: ./Dockerfile
 
         volumes:
-            - .:/usr/src/app/monitorapa
+            - ../:/usr/src/app/monitorapa
             #- ./cli:/usr/src/app/monitorapa/cli
             #- ./check:/usr/src/app/monitorapa/check
         restart: unless-stopped

@@ -88,28 +88,74 @@
 
 ```
 monitorapa
+│
 │   README.md
 │   PROGRESS.md
 │   LICENCE.txt
 │   AUTHORS.md
+│   MANUAL.md
+|   SPECIFICATION.md
 │   .gitignore
 │
-└───check
-│   │   google_analytics.js
+└───docker
+│   │   start.sh
+│   │   docker-compose.yml
+│   │   Dockerfile
+│   │   Dockerfile-base
 │
 └───cli
-│   │   MANUAL.md
-│   │   SPECIFICATION.md
-│   │   commons.py
-│   │   point1.py
-│   │   point2.py
-│   │   point3.py
-│   │   point4.py
-│   │   point4_sample.cfg
-│   │   requirements.txt
+│   │   runAll.py <- Esegue TUTTO tranne le PEC
+│   │
+│   └───data
+│   │   │ 
+│   │   └───enti
+│   │   │   │   download.py <- scarica out/enti/YYYY-MM-DD/enti.tsv
+│   │   │   │   normalize.py <- produce out/enti/YYYY-MM-DD/dataset.tsv
+│   │   │
+│   │   └───scuola
+│   │   │   │   normalize.py <- produce out/scuola/YYYY-MM-DD/dataset.tsv
+│   │   │
+│   │   └───partiti
+│   │   │   │   download.py <- scarica out/partiti/YYYY-MM-DD/enti.tsv
+│   │   │   │   normalize.py <- produce out/partiti/YYYY-MM-DD/dataset.tsv
+│   │   
+│   └───check
+│   │   │   http.py <- produce out/*/YYYY-MM-DD/check/http.tsv
+│   │   │   smtp.py <- produce out/*/YYYY-MM-DD/check/smtp.tsv
+│   │   │   browse.py <- produce out/*/YYYY-MM-DD/check/browse.tsv
+│   │   
+│   └───report
+│   │   │   http.py <- produce out/*/YYYY-MM-DD/report/http.html/png
 │
 └───out
-│   │   .gitkeep
+│   │
+│   └───enti
+│   │   │
+│   │   └───YYYY-MM-DD
+│   │   │   │   enti.tsv
+│   │   │   │   dataset.tsv
+│   │   │   │
+│   │   │   └───check
+│   │   │   │   │   http.tsv
+│   │   │   │   │   smtp.tsv
+│   │   │   │   │   google_analytics.tsv
+│   │   │   │
+│   │   │   └───report
+│   │   │   │   │   http.png
+│   │
+│   └───scuola
+│   │   │
+│   │   └───YYYY-MM-DD
+│   │   │   │   enti.tsv
+│   │   │   │   dataset.tsv
+│   │   │   │
+│   │   │   └───check
+│   │   │   │   │   http.tsv
+│   │   │   │   │   smtp.tsv
+│   │   │   │   │   google_analytics.tsv
+│   │   │   │
+│   │   │   └───report
+│   │   │   │   │   http.png
 ```
 
 ## Point1
