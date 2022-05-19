@@ -74,6 +74,14 @@
 ### \_Zaizen\_
 - Send PEC mail successfully
 
+## 2022/05/16
+### \_Zaizen\_
+- Docker environment properly working.
+
+## 2022/05/17
+### \_Zaizen\_
+- Generate GA_General, a graph showing how many PA's use GA over time
+
 # Current status
 
 ## Folder structure

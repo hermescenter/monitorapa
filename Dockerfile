@@ -1,9 +1,11 @@
 FROM monitorapa-base
 
-WORKDIR /usr/src/app/
-RUN git clone https://github.com/hermescenter/monitorapa.git
+ENV TZ=Europe/Rome
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
+VOLUME ["/usr/src/app/monitorapa"]
 WORKDIR /usr/src/app/monitorapa
-RUN python3 -m venv .venv &&  . ./.venv/bin/activate && pip3 install -r ./cli/requirements.txt
+CMD python3 -m venv .venv &&  . ./.venv/bin/activate && pip3 install -r ./cli/requirements.txt && /bin/bash && source ./.venv/bin/activate
 
 
-CMD /bin/bash
+#CMD /bin/bash
