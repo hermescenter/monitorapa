@@ -6,6 +6,9 @@ Fatto li abbiamo ordinati per Codice_Categoria.
 '''
 
 
+from typing import final
+
+
 final_dict = {}
 
 with open("enti.tsv", 'r') as inf, open("categorie.tsv", 'r') as inf_categorie:
@@ -46,6 +49,7 @@ with open("result.tsv", 'w') as inf:
         final_str += key +"\t"
         final_str += str(final_dict[key]["count"]) + "\t"
         final_str += str(final_dict[key]["total"]) + "\t"
+        final_str += str(final_dict[key]["count"] * 100 / final_dict[key]["total"]) + "%\t"
         final_str += str(final_dict[key]["name"]) + "\n"
     
     inf.write(final_str)
