@@ -3,3 +3,7 @@
 dt{color:green}
 dd{margin-bottom:1rem}
 header{white-space:normal}
+
+.friends {display:flex; justify-content:center;}
+.friends p { display: block; width:370px; margin: auto; clear: both;}
+.news span.date { font-family: monospace }
