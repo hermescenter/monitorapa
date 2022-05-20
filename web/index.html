@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="it" xml:lang="it">
     <head>
         <title>MonitoraPA</title>
@@ -13,25 +14,119 @@
         <meta property="og:image" content="https://privacy.g0v.it/theme/MonitoraPA-120x120.gif"/>
         <meta property="og:locale" content="it_IT" />
         <meta property="og:type" content="article"/>
+        <style>
+            header {
+                height: auto !important;
+            }
+            a {
+                text-decoration: underline !important;
+            }
+            a:hover {
+                color: #fff;
+                background-color: #014A84;    
+                text-decoration: none !important;
+            }
+            a.button {
+                text-decoration: none !important;
+            }            
+            .sr-only {
+                border: 0;
+                clip: rect(0,0,0,0);
+                height: 1px;
+                margin: -1px;
+                overflow: hidden;
+                padding: 0;
+                position: absolute;
+                width: 1px;
+            }
+            .sottotitolo {
+                font-size: 1.7rem;
+                font-weight: normal;
+            }
+            .disclaimer {
+                font-size: 1.2rem;
+                font-weight: normal;
+                font-style: italic;
+            }   
+            nav { 
+                background-color: transparent !important;
+                border: none;
+            }
+            nav a { 
+                border-radius: 0 !important;
+            }            
+            nav a:hover { 
+                border-radius: 0 !important;
+            }            
+            nav a:visited { 
+                color: #9E0000;
+            }            
+            
+            ul {
+              list-style-type: none;
+              margin: 0;
+              padding: 0;
+              overflow: hidden;
+            }
+
+            li {
+              padding: 0 !important;
+              float: left;
+              
+            }
+
+            li a {
+              display: block;
+              text-align: center;
+              padding: 6px 23px;
+              text-decoration: none;
+              background-color: #f3f3f3;                
+              border: 1px solid #e7e7e7;                
+            }
+
+            li a:hover {
+              background-color: #014A84 !important;
+              color: #fff !important;
+            }
+            @media (max-width: 767px) {
+            .sottotitolo {
+                font-size: 1.5rem;
+            }
+                
+                nav ul li {
+                    width: 50%;
+                    }
+            }
+            footer {
+                font-size: 1.4rem;    
+            }
+        </style>
             
     </head>
     <body style="max-width:720px; margin:auto">
-        <div class="container"  style="text-align: justify">
+        <div class="container">
             <header style="height:280px; text-align:center">
-                <img src="theme/header.png" alt="Monitora PA. Viviamo in una società cibernetica. Vogliamo che sia democratica."/>
+                <img src="theme/header-800-200.png" alt="" width="800" height="200" />
                 <h1>
-                <small>Allerta Privacy per i siti della Pubblica Amministrazione</small>
+                    <span class="sr-only">MonitoraPA</span>
+                    <span class="sottotitolo">Allerta Privacy per i siti della Pubblica Amministrazione</span>
                 </h1>
+                <div>
+                <p><span class="disclaimer">Viviamo in una società <strong>cibernetica</strong>.</span> <span class="disclaimer">Vogliamo che sia <strong>democratica</strong>.</span></p>
+
+                </div>                    
             </header>
-            <div  style="text-align: center; vertical-align:middle">
-                <a href="faq.html" title="Domande Frequenti">F.A.Q.</a> |
-                <a href="mailto:monitorapa@peceasy.it" target="_blank"><span style="font-size: large">✉</span> PEC</a> - 
-                <a href="https://friendica.opencloud.lu/profile/monitorapa" target="_blank">Fediverse</a> - 
-                <a href="https://matrix.to/#/%23MonitoraPA:matrix.opencloud.lu" target="_blank">Matrix</a> -
-                <a href="https://t.me/monitoraPA" target="_blank">Telegram</a> |
-                <a href="https://github.com/hermescenter/monitorapa" target="_blank">Sorgenti</a> |
-                <a href="LICENSE.txt" target="_blank">Hacking License</a>
-            </div>
+            <nav>
+                <ul>
+                    <li><a href="faq.html" title="Domande Frequenti" aria-label="Vai alla pagina delle domande frequenti (apre una nuova finestra)">F.A.Q.</a></li>                    
+                    <li><a href="https://friendica.opencloud.lu/profile/monitorapa" target="_blank" aria-label="Vai alla pagina del progetto su Friendica (apre una nuova finestra)">Fediverse</a></li> 
+                    <li><a href="https://matrix.to/#/%23MonitoraPA:matrix.opencloud.lu" target="_blank" aria-label="Vai al canale del progetto su Matrix (apre una nuova finestra)">Matrix</a></li>
+                    <li><a href="https://t.me/monitoraPA" target="_blank" aria-label="Vai al canale del progetto su Telegram (apre una nuova finestra)">Telegram</a></li>
+                    <li><a href="https://github.com/hermescenter/monitorapa" target="_blank" aria-label="Vai al progetto su Github (apre una nuova finestra)">Sorgenti</a></li>
+                    <li><a href="LICENSE.txt" target="_blank" aria-label="Vai alla pagina con la licenza (apre una nuova finestra)">Hacking License</a></li>
+                </ul>
+            </nav>                   
+
             <div class="row">
             <p>
             Sono ancora troppe le Pubbliche Amministrazioni che non
@@ -41,7 +136,7 @@
             emessi dai cittadini e permettendone la manipolazione politica e commerciale.
             </p>
             <p>
-            <a class="button large primary" style="float: right; valign: center; text-align: center; margin-right: 0; margin-left: 1.5em; color: white" href="MonitoraPA.zip">Scarica il Report</a>
+            <a class="button large primary" style="float: right; vertical-align: center; text-align: center; margin-right: 0; margin-left: 1.5em; color: white" href="MonitoraPA.zip">Scarica il Report</a>
             Per conoscere, e far conoscere, la gravità di questo problema,
             la nostra comunità hacker ha realizzato MonitoraPA, un vero e
             proprio <strong>osservatorio automatizzato</strong> in grado
@@ -124,13 +219,8 @@
             </div>
             </div>
             <footer style="text-align: center; vertical-align:middle">
-                Contattaci:
-                <a href="mailto:monitorapa@peceasy.it" target="_blank"><span style="font-size: large">✉</span> PEC</a> - 
-                <a href="https://friendica.opencloud.lu/profile/monitorapa" target="_blank">Fediverse</a> - 
-                <a href="https://matrix.to/#/%23MonitoraPA:matrix.opencloud.lu" target="_blank">Matrix</a> -
-                <a href="https://t.me/monitoraPA" target="_blank">Telegram</a> |
-                <a href="https://github.com/hermescenter/monitorapa" target="_blank">Sorgenti</a> |
-                <a href="LICENSE.txt" target="_blank">Hacking License</a>
+                <span style="font-size: large">✉</span> Contattaci:
+                <a href="mailto:monitorapa@peceasy.it" target="_blank"> PEC</a> 
             </footer>
         </div>
     </body>
