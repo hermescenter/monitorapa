@@ -23,7 +23,7 @@ check () {
     exit 127
   fi
 
-  if ! pidof docked > /dev/null; then
+  if ! pidof dockerd > /dev/null; then
     echo -e "\x1b[1m[\x1b[31mError\x1b[39m]\x1b[0m docker demon is not running, aborting"
     exit 127
   fi
