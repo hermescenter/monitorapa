@@ -2,8 +2,7 @@
 
 ## Obiettivo
 
-Il sistema di monitoraggio deve essere semplice da eseguire ed estendere
-per chiunque conosca un minimo Python, nonché banale da manutenere
+Il sistema di monitoraggio deve essere semplice da eseguire ed estendere per chiunque conosca un minimo Python, nonché banale da manutenere.
 
 Non necessita di essere scalabile, enterprise, cool etc...
 
@@ -14,19 +13,17 @@ Non necessita di essere scalabile, enterprise, cool etc...
 - segnalazioni 
 - reportistica
 
-la comunicazione fra i componenti avviene attraverso file tsv dal
-formato convenzionale in modo da limitare a python il set di conoscenze
-necessarie per comprendere e manutenere il codice limitare ad un editor
-di testo il necessario per ispezionarli
+La comunicazione fra i componenti avviene attraverso file tsv dal formato convenzionale in modo da limitare a python il set di conoscenze necessarie per comprendere, manutenere il codice e limitare a un editor di testo il necessario per ispezionarli.
 
+## Sorgenti di dati
 
-## Sorgenti di dato
+Il sistema deve poter applicare le verifiche a diversi tipi di dataset.
 
-Il sistema deve poter applicare le verifiche a diversi tipi di dataset
+I comandi relativi alle diverse sorgenti dati stanno dentro sottocartelle di *./cli/data/*
 
-I comandi relativi alle diverse sorgenti dato stanno dentro sottocartelle
-di ./cli/data/ ad esempio
+Ad esempio:
 
+```
 ./cli/data
   enti/
     download.py
@@ -37,50 +34,45 @@ di ./cli/data/ ad esempio
     download.py
     normalize.py
   ...
-  
-./cli/data/enti/download.py
+```
+`./cli/data/enti/download.py`  
+Scarica il dataset enti nella cartella ./out/enti/YYYY-MM-YY/enti.tsv
 
-scarica il dataset enti nella cartella ./out/enti/YYYY-MM-YY/enti.tsv
-
-./cli/data/enti/normalize.py ./out/enti/YYYY-MM-YY/enti.tsv
-
-crea il file ./out/enti/YYYY-MM-YY/dataset.tsv che contiene i seguenti campi
+`./cli/data/enti/normalize.py ./out/enti/YYYY-MM-YY/enti.tsv`  
+Crea il file ./out/enti/YYYY-MM-YY/dataset.tsv che contiene i seguenti campi
 - ID
 - Type
 - Address
 
-ID è l'identificativo univoco all'interno della sorgente dati 
-(il numero di righa se non esiste alcun indentificativo univoco)
+**ID**  
+È l'identificativo univoco all'interno della sorgente dati (il > numero di righa se non esiste alcun indentificativo univoco)
 
-Type può essere uno dei seguenti valori:
+**Type**  
+Può essere uno dei seguenti valori:
 - Web
 - Email
 
-Address è l'indirizzo di un automatismo dell'ente da testare.
+**Address**  
+È l'indirizzo di un automatismo dell'ente da testare.
 
-Prima di salvare il file lo script verifica che non ci siano righe duplicate
+Prima di salvare il file lo script verifica che non ci siano righe duplicate.
 
-In sostanza, dataset.tsv contiene l'elenco degli automatismi da testare
-associati a ciascun ente.
+In sostanza, *dataset.tsv* contiene l'elenco degli automatismi da testare associati a ciascun ente.
 
 
 ## Verifiche
 
-Dopo l'eventuale scaricamento e la normalizzazione del dataset sarà
-possibile avviare le verifiche, anche in parallelo.
+Dopo l'eventuale scaricamento e la normalizzazione del dataset sarà possibile avviare le verifiche, anche in parallelo.
 
-Tutti gli script di verifica prendono come primo argomento il path del
-file dataset.tsv
+Tutti gli script di verifica prendono come primo argomento il path del file *dataset.tsv*
 
-Gli script leggono le righe del file dataset e, se il Type è di loro
-competenza, effettuano i propri controlli.
+Gli script leggono le righe del file dataset e, se il **Type** è di loro competenza, effettuano i propri controlli.
 
 Non possono avere parametri opzionali.
 
-Se il file di output esiste già, individuano l'ultima riga nell'output
-ed ignorano tutte le righe che la precedono nel dataset.
+Se il file di output esiste già, individuano l'ultima riga nell'output ed ignorano tutte le righe che la precedono nel dataset.
 
-Scrivono un file tsv che contiene il seguente tracciato
+Scrivono un file tsv che contiene il seguente tracciato:
 - ID
 - Type
 - Address
@@ -88,57 +80,60 @@ Scrivono un file tsv che contiene il seguente tracciato
 - Completed
 - Issues
 
-Time contiene data ed ora di completamento del test
+**Time**  
+Contiene data ed ora di completamento del test
 
-Completed: 0 il test non è stato completato 1 il test è stato completato
+**Completed** 
+- 0 il test non è stato completato 
+- 1 il test è stato completato
 
-Issues: Completed = 1 => contiene metadati se il test ha riscontrato un problema
-        Completed = 0 => contiene l'errore che ha impedito il completamento del test
+**Issues**  
+- Completed = 0 -> contiene l'errore che ha impedito il completamento del test
+- Completed = 1 -> contiene metadati se il test ha riscontrato un problema
 
+```
 ./cli/check/
-  http.py <- script precedentemente proposto da Emilie
-  browse.py <- attuale point2.py
-  smtp.py <- script di verifica del record mx delle mail istituzionali per detectare
-             - chi usa GMail o Outlook 365 con una mail non chiaramente riferibili ad essa
-               (host -t mx dominio)
-             - per verificare che il server SMTP accetti solo connessioni
-               cifrate etc...
+  http.py 
+  browse.py
+  smtp.py
   ...
+```
+**http.py**  
+Script precedentemente proposto da Emilie Rollandin
 
-Ogni script di verifca scrive nella cartella del dataset iniziale
-un file tsv con il suo stesso nome, ad esempio
+**browse.py**
+Attuale point2.py
 
-./cli/check/http.py ./out/enti/YYYY-MM-DD/dataset.tsv
-scriverà il proprio output in ./out/enti/YYYY-MM-DD/check/http.tsv
+**smtp.py**  
+Script di verifica del record mx delle mail istituzionali per detectare:
+- chi usa GMail o Outlook 365 con una mail non chiaramente riferibili ad essa (host -t mx dominio)
+- per verificare che il server SMTP accetti solo connessioni cifrate etc...
 
-./cli/check/smpt.py ./out/enti/YYYY-MM-DD/dataset.tsv
-scriverà il proprio output in ./out/enti/YYYY-MM-DD/check/smpt.tsv
+Ogni script di verifca scrive nella cartella del dataset iniziale un file *tsv* con il suo stesso nome, ad esempio
 
-./cli/check/browse,py ./out/enti/YYYY-MM-DD/dataset.tsv google_analytics
-scriverà il proprio output in ./out/enti/YYYY-MM-DD/check/google_analytics.tsv
+`./cli/check/http.py ./out/enti/YYYY-MM-DD/dataset.tsv`  
+Scriverà il proprio output in ./out/enti/YYYY-MM-DD/check/http.tsv
 
-Ogni check può utilizzare una cartella con il proprio nome, dentro
-check/ per eventuali dati temporanei
+`./cli/check/smpt.py ./out/enti/YYYY-MM-DD/dataset.tsv`  
+Scriverà il proprio output in ./out/enti/YYYY-MM-DD/check/smpt.tsv
+
+`./cli/check/browse,py ./out/enti/YYYY-MM-DD/dataset.tsv google_analytics`  
+Scriverà il proprio output in ./out/enti/YYYY-MM-DD/check/google_analytics.tsv
+
+Ogni check può utilizzare una cartella con il proprio nome, dentro check/ per eventuali dati temporanei.
 
 # Segnalazioni
 
-Lo script di invio della segnalazione legge tutti i file prodotti
-dal check e per ogni riga con Completed a 1 e Issue valorizzata
-puoi inviare una PEC all'ente, ricercando l'indirizzo all'interno del
-file enti.tsv
+Lo script di invio della segnalazione legge tutti i file prodotti dal check e per ogni riga con **Completed a 1** e **Issue valorizzata** puoi inviare una PEC all'ente, ricercando l'indirizzo all'interno del file *enti.tsv*
 
 La configurazione della segnalazione va letta da fuori il repository.
 
 # Report
 
-ad ogni script dentro check corrisponde uno script in ./cli/report/
-che produce un report dedicato a partire dai dati racolti durante le
-verifiche
+A ogni script dentro check corrisponde uno script in `./cli/report/` che produce un report dedicato a partire dai dati raccolti durante le verifiche
 
-Ad esempio
-./cli/report/http.py <- produce il report dell'evoluzione di 
-questa staistica nel tempo
+Ad esempio `./cli/report/http.py` produce il report dell'evoluzione di questa statistica nel tempo
 
-./cli/check/http.py ./out/enti/YYYY-MM-DD/dataset.tsv
-scriverà il proprio output in ./out/enti/YYYY-MM-DD/report/http.png
+`./cli/check/http.py ./out/enti/YYYY-MM-DD/dataset.tsv`  
+Scriverà il proprio output in ./out/enti/YYYY-MM-DD/report/http.png
 
