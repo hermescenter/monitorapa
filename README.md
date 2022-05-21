@@ -13,14 +13,13 @@ MonitoraPA is composed of several components.
   some statistics and notifications to proper authorities in [cli/](./cli/),
   as specified in [SPECIFICATION.md](./cli/SPECIFICATION.md) and
   documented in [MANUAL.md](./cli/MANUAL.md)
-  
-- A catalogue of compliance checks (in JavaScript, run by Selenium)
-  in [check/](./check/).
-  
+
 - A minimal website about the project in [web/](./web/)
 
 - Some datasets to further extend the reach and impact of the project
   in [datasets/](./datasets/)
+
+Further details are described in [ARCHITECTURE.md](./ARCHITECTURE.md) (Italian).
 
 # Authors, Copyright and Licensing
 

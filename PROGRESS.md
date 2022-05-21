@@ -82,6 +82,10 @@
 ### \_Zaizen\_
 - Generate GA_General, a graph showing how many PA's use GA over time
 
+## 2022/05/21
+### Shamar
+- Documented the new architecture of the observatory (see [ARCHITECTURE.md](./ARCHITECTURE.md))
+
 # Current status
 
 ## Folder structure
@@ -93,8 +97,9 @@ monitorapa
 │   PROGRESS.md
 │   LICENCE.txt
 │   AUTHORS.md
+│   ARCHITECTURE.md
 │   MANUAL.md
-|   SPECIFICATION.md
+|   SPECIFICATION.md (specifica del vecchio sistema, sostituito da ARCHITECTURE.md)
 │   .gitignore
 │
 └───docker
@@ -122,7 +127,13 @@ monitorapa
 │   └───check
 │   │   │   http.py <- produce out/*/YYYY-MM-DD/check/http.tsv
 │   │   │   smtp.py <- produce out/*/YYYY-MM-DD/check/smtp.tsv
-│   │   │   browse.py <- produce out/*/YYYY-MM-DD/check/browse.tsv
+│   │   │   selenium.py <- produce out/*/YYYY-MM-DD/check/browse/*/*.tsv
+│   │   │   selenium/
+│   │   │   │   google_analytics.js <- test per la presenza di Google Analytics
+│   │   │   │   google_font.js      <- test per la presenza di Google Fonts
+│   │   │   │   google_maps.js      <- test per la presenza di Google Maps
+│   │   │   │   google_youtube.js   <- test per la presenza di video YouTube
+│   │   │   │   facebook_pixel.js   <- test per la presenza di Facebook Pixel
 │   │   
 │   └───report
 │   │   │   http.py <- produce out/*/YYYY-MM-DD/report/http.html/png
@@ -138,7 +149,8 @@ monitorapa
 │   │   │   └───check
 │   │   │   │   │   http.tsv
 │   │   │   │   │   smtp.tsv
-│   │   │   │   │   google_analytics.tsv
+│   │   │   │   │   browse/
+│   │   │   │   │   │   google_analytics.tsv
 │   │   │   │
 │   │   │   └───report
 │   │   │   │   │   http.png
@@ -157,50 +169,3 @@ monitorapa
 │   │   │   └───report
 │   │   │   │   │   http.png
 ```
-
-## Point1
-
-- Downloads a [tsv file](https://indicepa.gov.it/ipa-dati/datastore/dump/d09adf99-dc10-4349-8c53-27b1e5aa97b6?bom=True&format=tsv) containing various details of italian PAs to then save in a folder inside [out/](https://github.com/hermescenter/monitorapa/tree/main/out) named after the date of download
-
-## Point2
-
-- Can scan all the PAs sites for google_analytics presence and report it in the approriate folder (see [MANUAL.md](https://github.com/hermescenter/monitorapa/blob/main/cli/MANUAL.md)).
-
-## Point3
-
-- Process point2 output and generate a new enti.[format] in the appropriate folder (see [MANUAL.md](https://github.com/hermescenter/monitorapa/blob/main/cli/MANUAL.md)). You can choose the export format between json and tsv (default).
-
-## Folder structure after Point1, Point2 and Point3
-
-The structure is the same except for the [out/](https://github.com/hermescenter/monitorapa/tree/main/out) folder:
-
-```
-out
-│
-└───202?-??-??
-│   │   LICENSE.txt
-│   │   README.md
-│   │   enti.tsv
-│   │
-│   └───google_analytics
-│       │
-|       └───point2
-|       |   |   1.ERR.txt
-|       |   |   2.OK.txt
-|       |   |   3.OK.txt
-|       |   |   ...
-|       |   |   22844.OK.txt
-|       |
-|       └───point2
-|       |   | enti.tsv
-|       |
-|       └───point4
-```
-
-## Point4
-
-- Reads data from point3 and send emails correctly. It doesn't check if all required fields exists yet.
-
-## Point5
-
-- Nothing done yet.
