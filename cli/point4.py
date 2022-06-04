@@ -27,13 +27,14 @@ def usage():
     sys.exit(-1)
 
 
-def process(pa, message):
+def process(pa, message, primo_invio):
 
     final_msg = message.replace("$cod_amm", pa[1])
     final_msg = final_msg.replace("$des_amm", pa[2])
     final_msg = final_msg.replace("$nome_resp", pa[12])
     final_msg = final_msg.replace("$cogn_resp", pa[13])
     final_msg = final_msg.replace("$sito_istituzionale", pa[29].lower())
+    final_msg = final_msg.replace("$primo_invio", primo_invio.strftime("%y/%m/%d")+ " " + primo_invio.strftime("%H:%M"))
 
     return final_msg
 
@@ -154,7 +155,7 @@ con il sostegno di
             if length == 0:   
                 logf.write("Codice_IPA\tMail1\tSito_istituzionale\tData\n")
             else:
-                out_count = length + 3
+                out_count = length + 4
 
 
             for line in f:
@@ -163,8 +164,11 @@ con il sostegno di
                     fields = line.split('\t')
 
                     if (int(fields[35]) == 1):
-                        subject = process(fields, subject)
-                        msg = process(fields, message)
+
+                        primo_invio = a + datetime.timedelta(seconds=count*10)
+
+                        subject = process(fields, subject, primo_invio)
+                        msg = process(fields, message, primo_invio)
                         
                         print("Codice: " + fields[1] + ", Denominazione: " + fields[2] + ", nome: " + fields[12]
           + ", cognome: " + fields[13] + ", sito: " + fields[29].lower() + ", mail: " + fields[19], ", result: " + fields[35])
@@ -180,12 +184,11 @@ con il sostegno di
                             final_msg['Subject']=subject
                             final_msg.set_content(msg)
 
+                           
                             print(fields[19])
-                            print(receiver_email)
                             
-                            b = a + datetime.timedelta(seconds=count*10)
-
-                            #server.send_message(final_msg)
+                        
+                            server.send_message(final_msg)
                             logf.write("%s\t%s\t%s\t%s\n" % (fields[1], fields[19], fields[29], str(datetime.datetime.now())))
                         
                             time.sleep(time_to_wait)
