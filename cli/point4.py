@@ -45,51 +45,80 @@ def main(argv):
 
     outDir = commons.computeOutDir(sys.argv)
 
-    subject = "Diffida per violazione del GDPR per utilizzo Google Analytics su sito istituzionale"
-    message = """Alla Att.ne del DPO (Responsabile Protezione Dati) dell'Ente.
+    subject = "Segnalazione di illecito utilizzo di Google Analytics su $cod_amm, ed invito a risolvere la violazione del Regolamento generale sulla protezione dei dati personali 2016/679 (GDPR) all'interno del sito web $sito_istituzionale"
+    message = """All'att.ne di $cod_amm, in qualità di soggetto titolare 
+del trattamento ai sensi dell'art. 4 par. 1 n. 7) GDPR.
 
-Diffida per per l'illecito utilizzo di Google Analytics su
-$cod_amm, in violazione del 
-Regolamento generale sulla protezione dei dati personali 2016/679 (GDPR)
+Il sottoscritto Fabio Pietrosanti scrive in proprio nonché a nome e per 
+conto delle associazioni firmatarie in calce e della comunità di hacker,
+attiviste e attivisti, cittadine e cittadini italiani attenti alla
+riservatezza, alla libertà ed ai diritti cibernetici che ha realizzato
+Monitora PA https://monitora-pa.it , eleggendo domicilio digitale presso
+l'indirizzo di posta elettronica certificata monitorapa@peceasy.it,
+nonché domicilio fisico presso _inserire domicio fisico_ . 
 
-Spett.le Ente,
-siamo un gruppo di hacker italiani, attiviste e attivisti, cittadine e
-cittadini attenti alla privacy ed alla tutela dei diritti cibernetici
-nel nostro Paese: https://privacy.g0v.it
+Facciamo seguito alla PEC inviata in data $primo_invio per rilevare che
+il vostro Ente utilizza ancora Google Analytics (GA) nel suo sito
+$sito_istituzionale, nonostante questo strumento non sia attualmente
+conforme, in assenza di misure tecniche supplementari efficaci,
+alle disposizioni del GDPR in ordine al trasferimento transfrontaliero
+di dati personali e alle "Linee guida cookie e altri strumenti di
+tracciamento" approvate dall'Autorità garante per la protezione dei
+dati personali il 10 giugno 2021.
 
-Abbiamo rilevato che il vostro Ente utilizza Google analytics (GA) 
-nel suo sito $sito_istituzionale, nonostante sia oramai pacifico 
-che questo strumento non sia conforme ai principi del GDPR in ordine
-al trasferimento transfrontaliero di dati personali.
-L'utilizzo di GA è infatti stato ritenuto illecito dall'EDPS, 
-con riguardo al trattamento dei dati operato dal Parlamento europeo, 
-dall'Autorità di controllo austriaca e da ultimo da quella francese 
-(si veda in sintesi https://noyb.eu/en/edps-sanctions-parliament-over-eu-us-data-transfers-google-and-stripe).
+Come ben noto, anche a seguito della sentenza Schrems II della Corte di
+Giustizia dell'Unione Europea, l'utilizzo di GA è stato ritenuto illecito
+dall'EDPS, dall'Autorità di controllo austriaca e da ultimo da quella
+francese.
 
-Riteniamo che il mantenimento, da parte dell'Ente, di un trattamento 
-di dati personali così evidentemente illecito, che comporta un 
-ingiustificato e massivo trasferimento trasfrontaliero di dati 
-personali, riguardante tutti gli utenti del sito $sito_istituzionale, 
-costituisca una grave violazione che debba immediatamente cessare.
-Invitiamo pertanto a voler immediatamente provvedere alla rimozione 
-di GA e di qualsiasi altro strumento di analytics o tracking che 
-produca effetti analoghi.
+Riteniamo che il mantenimento, da parte dell'Ente, di un trattamento di
+dati personali nonno conforme al disposto normativo, in ragione del
+trasferimento trasfrontaliero di dati personali in assenza di una
+condizione legittimante ai sensi degli artt. 44 e ss. GDPR, esponga 
+a rischi ingiustificati tutti i visitatori del sito $sito_istituzionale.
 
-La suddetta violazione, imputabile al Vs. Ente $des_amm, 
-quale titolare del trattamento, in persona del legale rapp.te pro 
-tempore $nome_resp $cogn_resp espone l'Ente stesso alle sanzioni
-amministrative pecuniarie previste dall'art. 83 del GDPR.
+Pertanto invitiamo nuovamente l'Ente in indirizzo a voler provvedere 
+alla rimozione di GA e di qualsiasi altro strumento di analytics o
+tracking che produca effetti analoghi, entro il termine di 15 giorni
+dalla ricezione della presente oppure, in alternativa, adottare misure
+tecniche supplementari efficaci a protezione dei dati personali dei
+visitatori, in modo tale che nessun dato (o insieme di dati) che possa
+permettere a Google di identificare con una probabilità utile un
+qualsiasi cittadino italiano o europeo, possa raggiungere server
+controllati da tale azienda.
 
-La presente viene inviata in via informativa, proprio al fine di
-consentire una rapida rimozione di Google Analytics, rimandando 
-a quanto raccomandato dalla Agenzia per l'Italia Digitale Web Analytics Italia
-https://www.agid.gov.it/it/design-servizi/web-analytics-italia
+In difetto di ottemperanza da parte Vostra agli obblighi di legge in
+materia di trattamento dei dati personali nei termini sopra indicati,
+inoltreremo segnalazione al Garante per la protezione dei dati personali
+ai sensi e per gli effetti dell'art. 144 del Codice in materia di
+protezione dei dati personali (DECRETO LEGISLATIVO 30 giugno 2003, n.196
+e successive modifiche ed integrqazioni) per la valutazione della
+Vostra condotta anche ai fini dell'emanazione dei provvedimenti
+di cui all'art. 58 del GDPR.
 
-Il resoconto complessivo delle Pubbliche Amministrazioni in violazione,
-con particolare riguardo a quelle che non avranno provveduto alla
-tempestiva rimozione di GA, verrà pubblicato come report e inviato
-come segnalazione al Garante per la Protezione dei Dati e
-al Difensore Civico Digitale.
+Con osservanza.
+
+Distinti saluti
+
+
+Fabio Pietrosanti
+Co-fondatore di Monitora PA
+https://monitora-pa.it
+
+con il sostegno di
+
+- Copernicani
+  https://copernicani.it/
+
+- Hermes Center
+  https://www.hermescenter.org/
+
+- LinuxTrent
+  https://www.linuxtrent.it/
+
+- Open Genova
+  https://associazione.opengenova.org/
+
 
 """
 
@@ -135,7 +164,7 @@ al Difensore Civico Digitale.
                             # Rimpiazzare receiver_email con fields[19] quando si vuole mandare realmente le mail
                             final_msg = EmailMessage()
                             final_msg['From']=sender_email
-                            final_msg['To']=fields[19] #per provare in debug: receiver_email
+                            final_msg['To']=receiver_email #fields[19] #per provare in debug: receiver_email
                             #final_msg['Cc']=sender_email #Per vedere le mail che mandiamo, Bcc non pare essere accettato.
                             final_msg['Subject']=subject
                             final_msg.set_content(msg)
