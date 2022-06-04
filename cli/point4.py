@@ -34,7 +34,7 @@ def process(pa, message, primo_invio):
     final_msg = final_msg.replace("$nome_resp", pa[12])
     final_msg = final_msg.replace("$cogn_resp", pa[13])
     final_msg = final_msg.replace("$sito_istituzionale", pa[29].lower())
-    final_msg = final_msg.replace("$primo_invio", primo_invio.strftime("%d/%m/%Y") +",")
+    final_msg = final_msg.replace("$primo_invio", primo_invio.strftime("%d/%m/%Y"))
 
     return final_msg
 
@@ -58,7 +58,7 @@ Monitora PA (https://monitora-pa.it), eleggendo a domicilio digitale
 l'indirizzo di posta elettronica certificata monitorapa@peceasy.it,
 e a domicilio fisico via Aretusa 34, a Milano.
 
-Facciamo seguito alla PEC già inviata in data $primo_invio avendo
+Facciamo seguito alla PEC già inviata in data $primo_invio, avendo
 rilevato come il vostro Ente utilizzi ancora Google Analytics (GA)
 nel suo sito $sito_istituzionale.
 Come ben noto questo strumento non è attualmente conforme, in
@@ -82,11 +82,11 @@ Pertanto invitiamo nuovamente l'Ente in indirizzo a voler provvedere
 alla rimozione di GA e di qualsiasi altro strumento di analisi
 o tracciamento che produca effetti analoghi entro il termine di
 15 giorni dalla ricezione della presente.
-In alternativa e negli stessi termini, ad adottare misure tecniche
-supplementari efficaci a protezione dei dati personali dei visitatori,
-tali che nessun dato (o insieme di dati), raggiungendone i server,
-possa permettere a Google di identificare con probabilità
-non trascurabile un qualsiasi cittadino italiano o europeo.
+In alternativa e negli stessi termini, invitiamo l'Ente ad adottare
+misure tecniche supplementari efficaci a protezione dei dati personali
+dei visitatori, tali che nessun dato (o insieme di dati),
+raggiungendone i server, possa permettere a Google di identificare con
+probabilità non trascurabile un qualsiasi cittadino italiano o europeo.
 
 In difetto di ottemperanza da parte Vostra nei termini su indicati
 agli obblighi di legge in materia di trattamento dei dati personali,
