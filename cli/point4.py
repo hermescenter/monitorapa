@@ -153,14 +153,18 @@ con il sostegno di
         if not os.path.exists(outDir + '/../point4/log.tsv'):
             open(outDir + '/../point4/log.tsv', 'w').close()
 
-        with open(outDir + '/../point3/enti.tsv', 'r') as f, open(outDir + '/../point4/log.tsv', 'r+') as logf:
+        length = 0
+
+        with open(outDir + '/../point4/log.tsv', 'r') as logf:
             length = len(logf.readlines())
+            if length != 0:   
+                out_count = length + 1
+
+        with open(outDir + '/../point3/enti.tsv', 'r') as f, open(outDir + '/../point4/log.tsv', 'ab', buffering=0) as logf:
             if length == 0:   
-                logf.write("Codice_IPA\tMail1\tSito_istituzionale\tData\n")
-            else:
-                out_count = length + 4
-
-
+                logf.write("Codice_IPA\tMail1\tSito_istituzionale\tData".encode("utf-8"))
+                logf.flush()
+     
             for line in f:
                 if count >= out_count:
                   
@@ -189,9 +193,11 @@ con il sostegno di
 
                             print(fields[19])
                             
-                            server.send_message(final_msg)
-                            logf.write("%s\t%s\t%s\t%s\n" % (fields[1], fields[19], fields[29], str(datetime.datetime.now())))
-                        
+                            #server.send_message(final_msg)
+                            logf.write(("\n%s\t%s\t%s\t%s" % (fields[1], fields[19], fields[29], str(datetime.datetime.now()))).encode("utf-8"))
+
+                            logf.flush()
+
                             time.sleep(time_to_wait)
 
                 count += 1
