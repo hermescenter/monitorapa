@@ -49,13 +49,14 @@ def main(argv):
     message = """All'att.ne di $cod_amm, in qualità di soggetto titolare 
 del trattamento ai sensi dell'art. 4 par. 1 n. 7) GDPR.
 
-Il sottoscritto Fabio Pietrosanti scrive in proprio nonché a nome e per 
-conto delle associazioni firmatarie in calce e della comunità di hacker,
-attiviste e attivisti, cittadine e cittadini italiani attenti alla
+Il sottoscritto Fabio Pietrosanti, nato a Latina il 31/08/1980 
+(codice fiscale: PTRFBA80M31E472W), scrive in proprio nonché a nome e per 
+conto delle associazioni sostenitrici in calce e della comunità di hacker,
+attiviste e attivisti, cittadine e cittadini attenti alla
 riservatezza, alla libertà ed ai diritti cibernetici che ha realizzato
-Monitora PA https://monitora-pa.it , eleggendo domicilio digitale presso
+Monitora PA https://monitora-pa.it, eleggendo domicilio digitale presso
 l'indirizzo di posta elettronica certificata monitorapa@peceasy.it,
-nonché domicilio fisico presso _inserire domicio fisico_ . 
+nonché domicilio fisico a Milano, in via Aretusa 34. 
 
 Facciamo seguito alla PEC inviata in data $primo_invio per rilevare che
 il vostro Ente utilizza ancora Google Analytics (GA) nel suo sito
