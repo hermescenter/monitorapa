@@ -45,57 +45,59 @@ def main(argv):
 
     outDir = commons.computeOutDir(sys.argv)
 
-    subject = """Segnalazione di illecito utilizzo di Google Analytics su $cod_amm, ed invito a risolvere la violazione del Regolamento generale sulla protezione dei dati personali 2016/679 (GDPR) all'interno del sito web $sito_istituzionale"""
+    subject = """Segnalazione di illecito utilizzo di Google Analytics su $cod_amm e invito a risolvere la violazione del Regolamento generale sulla protezione dei dati personali 2016/679 (GDPR) all'interno del sito web $sito_istituzionale"""
     message = """All'att.ne di $cod_amm, in qualità di soggetto titolare 
-del trattamento ai sensi dell'art. 4 par. 1 n. 7) GDPR.
+del trattamento ai sensi dell'art. 4 par. 1 n. 7) - GDPR.
 
 Il sottoscritto Fabio Pietrosanti, nato a Latina il 31/08/1980 
-(codice fiscale: PTRFBA80M31E472W), scrive in proprio nonché a nome e per 
-conto delle associazioni sostenitrici in calce e della comunità di hacker,
-attiviste e attivisti, cittadine e cittadini attenti alla
-riservatezza, alla libertà ed ai diritti cibernetici che ha realizzato
-Monitora PA https://monitora-pa.it, eleggendo domicilio digitale presso
+(codice fiscale: PTRFBA80M31E472W), scrive in proprio ed a nome e
+per conto delle associazioni sostenitrici in calce nonché della comunità
+di hacker, attiviste, attivisti, cittadine e cittadini che, attenti a
+riservatezza, libertà e diritti cibernetici, ha realizzato
+Monitora PA (https://monitora-pa.it), eleggendo a domicilio digitale
 l'indirizzo di posta elettronica certificata monitorapa@peceasy.it,
-nonché domicilio fisico a Milano, in via Aretusa 34. 
+e a domicilio fisico via Aretusa 34, a Milano.
 
-Facciamo seguito alla PEC inviata in data $primo_invio per rilevare che
-il vostro Ente utilizza ancora Google Analytics (GA) nel suo sito
-$sito_istituzionale, nonostante questo strumento non sia attualmente
-conforme, in assenza di misure tecniche supplementari efficaci,
-alle disposizioni del GDPR in ordine al trasferimento transfrontaliero
-di dati personali e alle "Linee guida cookie e altri strumenti di
-tracciamento" approvate dall'Autorità garante per la protezione dei
-dati personali il 10 giugno 2021.
+Facciamo seguito alla PEC già inviata in data $primo_invio avendo
+rilevato come il vostro Ente utilizzi ancora Google Analytics (GA)
+nel suo sito $sito_istituzionale.
+Come ben noto questo strumento non è attualmente conforme, in
+assenza di misure tecniche supplementari efficaci, alle disposizioni
+del GDPR in ordine al trasferimento transfrontaliero dei dati personali
+e alle "Linee guida cookie e altri strumenti di tracciamento" approvate
+dall'Autorità garante per la protezione dei dati personali il
+10 giugno 2021.
+L'EDPS e le stesse Autorità di controllo austriaca e francese, a seguito
+della sentenza Schrems II della Corte di Giustizia dell'Unione Europea,
+ha ritenuto il suo utilizzo illegittimo.
 
-Come ben noto, anche a seguito della sentenza Schrems II della Corte di
-Giustizia dell'Unione Europea, l'utilizzo di GA è stato ritenuto illecito
-dall'EDPS, dall'Autorità di controllo austriaca e da ultimo da quella
-francese.
+Riteniamo quindi che il mantenimento da parte dell'Ente di tale
+trattamento di dati personali non conforme al disposto normativo,
+in ragione del trasferimento trasfrontaliero di dati personali
+e in assenza di una condizione legittimante ai sensi degli artt. 44
+e ss. GDPR, esponga a rischi ingiustificati tutti i visitatori del
+sito $sito_istituzionale.
 
-Riteniamo che il mantenimento, da parte dell'Ente, di un trattamento di
-dati personali non conforme al disposto normativo, in ragione del
-trasferimento trasfrontaliero di dati personali in assenza di una
-condizione legittimante ai sensi degli artt. 44 e ss. GDPR, esponga 
-a rischi ingiustificati tutti i visitatori del sito $sito_istituzionale.
+Pertanto invitiamo nuovamente l'Ente in indirizzo a voler provvedere
+alla rimozione di GA e di qualsiasi altro strumento di analisi
+o tracciamento che produca effetti analoghi entro il termine di
+15 giorni dalla ricezione della presente.
+In alternativa e negli stessi termini, ad adottare misure tecniche
+supplementari efficaci a protezione dei dati personali dei visitatori,
+tali che nessun dato (o insieme di dati), raggiungendone i server,
+possa permettere a Google di identificare con probabilità
+non trascurabile, un qualsiasi cittadino italiano o europeo.
 
-Pertanto invitiamo nuovamente l'Ente in indirizzo a voler provvedere 
-alla rimozione di GA e di qualsiasi altro strumento di analytics o
-tracking che produca effetti analoghi, entro il termine di 15 giorni
-dalla ricezione della presente oppure, in alternativa, adottare misure
-tecniche supplementari efficaci a protezione dei dati personali dei
-visitatori, in modo tale che nessun dato (o insieme di dati) che possa
-permettere a Google di identificare con una probabilità utile un
-qualsiasi cittadino italiano o europeo, possa raggiungere server
-controllati da tale azienda.
+In difetto di ottemperanza da parte Vostra nei termini su indicati
+agli obblighi di legge in materia di trattamento dei dati personali,
+ci vedremo costretti a inviare una segnalazione al Garante per la
+protezione dei dati personali, ai sensi e per gli effetti
+dell'art. 144 del Codice in materia di protezione dei dati personali
+(DECRETO LEGISLATIVO 30 giugno 2003, n.196 e successive modifiche
+e integrazioni) per una valutazione della Vostra condotta anche ai
+fini dell'emanazione di eventuali provvedimenti di cui
+all'art. 58 del GDPR.
 
-In difetto di ottemperanza da parte Vostra agli obblighi di legge in
-materia di trattamento dei dati personali nei termini sopra indicati,
-inoltreremo segnalazione al Garante per la protezione dei dati personali
-ai sensi e per gli effetti dell'art. 144 del Codice in materia di
-protezione dei dati personali (DECRETO LEGISLATIVO 30 giugno 2003, n.196
-e successive modifiche ed integrqazioni) per la valutazione della
-Vostra condotta anche ai fini dell'emanazione dei provvedimenti
-di cui all'art. 58 del GDPR.
 
 Con osservanza.
 
