@@ -13,7 +13,9 @@ import smtplib
 import ssl
 import configparser
 import sys
+import datetime
 import commons
+import os
 import time
 from email.message import EmailMessage
 
@@ -26,9 +28,6 @@ def usage():
 
 
 def process(pa, message):
-
-    print("Codice: " + pa[1] + ", Denominazione: " + pa[2] + ", nome: " + pa[12]
-          + ", cognome: " + pa[13] + ", sito: " + pa[29].lower() + ", mail: " + pa[19], ", result: " + pa[35])
 
     final_msg = message.replace("$cod_amm", pa[1])
     final_msg = final_msg.replace("$des_amm", pa[2])
@@ -45,7 +44,7 @@ def main(argv):
 
     outDir = commons.computeOutDir(sys.argv)
 
-    subject = "Diffida per violazione del GDPR per utilizzo Google Analytics su sito istituzionale"
+    subject = """Segnalazione di illecito utilizzo di Google Analytics su $cod_amm, ed invito a risolvere la violazione del Regolamento generale sulla protezione dei dati personali 2016/679 (GDPR) all'interno del sito web $sito_istituzionale"""
     message = """Alla Att.ne del DPO (Responsabile Protezione Dati) dell'Ente.
 
 Diffida per per l'illecito utilizzo di Google Analytics su
@@ -105,6 +104,9 @@ al Difensore Civico Digitale.
     password = str(config['password'])
     receiver_email = str(config['debug_receiver_email'])
 
+    a = datetime.datetime(2022,5,11,17,2,20)
+
+
     with smtplib.SMTP_SSL(smtp_server, port) as server:
         server.login(sender_email, password)
 
@@ -115,10 +117,14 @@ al Difensore Civico Digitale.
         
         count = 0
         out_count = 1
+
+        if not os.path.exists(outDir + '/../point4/log.tsv'):
+            open(outDir + '/../point4/log.tsv', 'w').close()
+
         with open(outDir + '/../point3/enti.tsv', 'r') as f, open(outDir + '/../point4/log.tsv', 'r+') as logf:
             length = len(logf.readlines())
             if length == 0:   
-                logf.write("Codice_IPA\tMail1\tSito_istituzionale\n")
+                logf.write("Codice_IPA\tMail1\tSito_istituzionale\tData\n")
             else:
                 out_count = length + 3
 
@@ -129,22 +135,28 @@ al Difensore Civico Digitale.
                     fields = line.split('\t')
 
                     if (int(fields[35]) == 1):
+                        subject = process(fields, subject)
                         msg = process(fields, message)
+                        
+                        print("Codice: " + fields[1] + ", Denominazione: " + fields[2] + ", nome: " + fields[12]
+          + ", cognome: " + fields[13] + ", sito: " + fields[29].lower() + ", mail: " + fields[19], ", result: " + fields[35])
 
                         if send_for_real.lower() == "true":
                             # Rimpiazzare receiver_email con fields[19] quando si vuole mandare realmente le mail
                             final_msg = EmailMessage()
                             final_msg['From']=sender_email
-                            final_msg['To']=fields[19] #per provare in debug: receiver_email
-                            #final_msg['Cc']=sender_email #Per vedere le mail che mandiamo, Bcc non pare essere accettato.
+                            final_msg['To']=receiver_email #per provare in debug: receiver_email
+                            final_msg['Cc']=sender_email #Per vedere le mail che mandiamo, Bcc non pare essere accettato.
                             final_msg['Subject']=subject
                             final_msg.set_content(msg)
 
                             print(fields[19])
                             print(receiver_email)
                             
-                            server.send_message(final_msg)
-                            logf.write("%s\t%s\t%s\n" % (fields[1], fields[19], fields[29]))
+                            b = a + datetime.timedelta(seconds=count*10)
+
+                            #server.send_message(final_msg)
+                            logf.write("%s\t%s\t%s\t%s\n" % (fields[1], fields[19], fields[29], str(datetime.datetime.now())))
                         
                             time.sleep(time_to_wait)
 
