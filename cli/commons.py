@@ -37,7 +37,7 @@ def computeOutDir(argv):
         sys.exit(
             "Cannot find LICENSE.txt.\n\nPlease run cli/ scripts from the root of the repository.")
     if "cli/point1.py" in argv[0]:
-        dirName = "out/%s" % datetime.datetime.utcnow().strftime("%Y-%m-%d")
+        dirName = "out/%s" % datetime.datetime.now().strftime("%Y-%m-%d")
         if not os.path.isdir(dirName):
             os.mkdir(dirName)
             #print("Created output dir %s" % dirName)
