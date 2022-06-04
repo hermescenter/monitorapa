@@ -34,7 +34,7 @@ def process(pa, message, primo_invio):
     final_msg = final_msg.replace("$nome_resp", pa[12])
     final_msg = final_msg.replace("$cogn_resp", pa[13])
     final_msg = final_msg.replace("$sito_istituzionale", pa[29].lower())
-    final_msg = final_msg.replace("$primo_invio", primo_invio.strftime("%y/%m/%d"))
+    final_msg = final_msg.replace("$primo_invio", primo_invio.strftime("%d/%m/%Y") +",")
 
     return final_msg
 
@@ -187,10 +187,8 @@ con il sostegno di
                             final_msg['Subject']=subject
                             final_msg.set_content(msg)
 
-                           
                             print(fields[19])
                             
-                        
                             server.send_message(final_msg)
                             logf.write("%s\t%s\t%s\t%s\n" % (fields[1], fields[19], fields[29], str(datetime.datetime.now())))
                         
