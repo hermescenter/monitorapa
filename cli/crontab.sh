@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -x
 
 LOG="$1"
 if [ "x" == "x$LOG" ]; then
@@ -13,6 +13,6 @@ if [ ! -f "$CURRENT_ENTI" ]; then
     exit 1
 fi
 
-python3 -u ./cli/point2parallel.py check/google_analytics.js $CURRENT_ENTI 13000 >> $LOG 2>&1
+python3 -u ./cli/point2.py check/google_analytics.js $CURRENT_ENTI 2>&1 | tee $LOG
 
 # ./cli/point4.py check/google_analytics.js $CURRENT_ENTI 30 >> $LOG 2>&1
