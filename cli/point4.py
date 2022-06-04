@@ -158,7 +158,7 @@ con il sostegno di
         with open(outDir + '/../point4/log.tsv', 'r') as logf:
             length = len(logf.readlines())
             if length != 0:   
-                out_count = length + 1
+                out_count = length 
 
         with open(outDir + '/../point3/enti.tsv', 'r') as f, open(outDir + '/../point4/log.tsv', 'ab', buffering=0) as logf:
             if length == 0:   
@@ -194,11 +194,15 @@ con il sostegno di
                             print(fields[19])
                             
                             #server.send_message(final_msg)
+                            
                             logf.write(("\n%s\t%s\t%s\t%s" % (fields[1], fields[19], fields[29], str(datetime.datetime.now()))).encode("utf-8"))
-
                             logf.flush()
 
                             time.sleep(time_to_wait)
+                
+                    else:
+                        logf.write(("\n%s\t%s\t%s" % (fields[1], fields[19], fields[29])).encode("utf-8"))
+                        logf.flush()
 
                 count += 1
 
