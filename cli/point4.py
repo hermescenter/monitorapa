@@ -69,7 +69,7 @@ dall'Autorità garante per la protezione dei dati personali il
 10 giugno 2021.
 L'EDPS e le stesse Autorità di controllo austriaca e francese, a seguito
 della sentenza Schrems II della Corte di Giustizia dell'Unione Europea,
-ha ritenuto il suo utilizzo illegittimo.
+hanno ritenuto il suo utilizzo illegittimo.
 
 Riteniamo quindi che il mantenimento da parte dell'Ente di tale
 trattamento di dati personali non conforme al disposto normativo,
@@ -86,7 +86,7 @@ In alternativa e negli stessi termini, ad adottare misure tecniche
 supplementari efficaci a protezione dei dati personali dei visitatori,
 tali che nessun dato (o insieme di dati), raggiungendone i server,
 possa permettere a Google di identificare con probabilità
-non trascurabile, un qualsiasi cittadino italiano o europeo.
+non trascurabile un qualsiasi cittadino italiano o europeo.
 
 In difetto di ottemperanza da parte Vostra nei termini su indicati
 agli obblighi di legge in materia di trattamento dei dati personali,
