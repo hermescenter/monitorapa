@@ -18,6 +18,7 @@ for dir in dir_list:
     
     ga_count.append(count)
 
-fig = px.line(x=dir_list, y=ga_count, labels={'x':'Data', 'y':'GA'}, title='PA che usano GA') 
+fig = px.line(x=dir_list, y=ga_count, labels={'x':'Data', 'y':'PA contagiate da Google Analytics (fra le contattate da MonitoraPA)'}, title='MonitoraPA') 
+fig.update_layout(yaxis_range=[0,8000])
 
 fig.write_html("web/grafici/GA_General.html")
