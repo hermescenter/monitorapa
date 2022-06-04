@@ -33,6 +33,10 @@ you produce running the system), recursively.
 
 You cannot mix (A)GPL code with hacks covered by the Hacking License.
 
+# Web Design
+
+See the README.md in new repository https://github.com/MonitoraPA/web#design
+
 # Coding Guidelines
 
 Code like if your hack should be maintained by a child who

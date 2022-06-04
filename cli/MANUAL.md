@@ -80,6 +80,15 @@ Downloads `out/YYYY-MM-DD/enti.tsv`
 
 ## Point 2
 
+If you're accessing your machine with SSH is recommended to use tmux so you don´t have to keep the connection alive.
+
+so, first start a tmux session with:
+```
+tmux new -s monitoraPA
+```
+if you don't have tmux installed just install it with your package manager!
+
+then:
 ```
 python3 cli/point2.py check/google_analytics.js out/yyyy-mm-dd/enti.tsv [starting_index]
 ```
@@ -87,6 +96,17 @@ python3 cli/point2.py check/google_analytics.js out/yyyy-mm-dd/enti.tsv [startin
 If you want to redirect output:
 ```
 python3 -u cli/point2.py check/google_analytics.js out/yyyy-mm-dd/enti.tsv [starting_index [count]] >> out/yyyy-mm-dd/point2.out
+```
+
+If you started a tmux session to safely return to terminal press:
+
+`CTRL + B` and then `D` to detach the session
+
+**ONLY after being detached from the session is safe to close SSH connection!**
+
+To attach again to the session type:
+```
+tmux attach-session -t monitoraPA
 ```
 
 Check for Google Analytics presence over all the website listed in
