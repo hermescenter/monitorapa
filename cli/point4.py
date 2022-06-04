@@ -34,7 +34,7 @@ def process(pa, message, primo_invio):
     final_msg = final_msg.replace("$nome_resp", pa[12])
     final_msg = final_msg.replace("$cogn_resp", pa[13])
     final_msg = final_msg.replace("$sito_istituzionale", pa[29].lower())
-    final_msg = final_msg.replace("$primo_invio", primo_invio.strftime("%y/%m/%d")+ " " + primo_invio.strftime("%H:%M"))
+    final_msg = final_msg.replace("$primo_invio", primo_invio.strftime("%y/%m/%d"))
 
     return final_msg
 
