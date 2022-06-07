@@ -17,7 +17,14 @@ setTimeout(function(){
         document.title = window[gaName].q[0][1];
         return;
     }
+    // cleanup comments in js
+    for(var sc of document.getElementsByTagName('script')){
+        if(!sc.src) {
+            sc.text = sc.text.replace(/\/\/.+/g, "").replace(/\n/g, ' ').replace(/\/\*.*?\*\//g, '');
+        }
+    }
     var html = document.all[0].innerHTML;
+    html = html.replace(/\n/g,' ').replace(/<!--[\s\S]*?-->/g, ''); // cleanup comments in html
     var test = html.match(/UA-[0-9-]+/);
     if(test){
         // simplest possible regex test.

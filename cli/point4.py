@@ -54,12 +54,11 @@ del trattamento ai sensi dell'art. 4 par. 1 n. 7) - GDPR.
 
 Il sottoscritto Fabio Pietrosanti, nato a Latina il 31/08/1980 
 (codice fiscale: PTRFBA80M31E472W), scrive in proprio ed a nome e
-per conto delle associazioni sostenitrici in calce nonché della comunità
-di hacker, attiviste, attivisti, cittadine e cittadini che, attenti a
-riservatezza, libertà e diritti cibernetici, ha realizzato
-Monitora PA (https://monitora-pa.it), eleggendo a domicilio digitale
-l'indirizzo di posta elettronica certificata monitorapa@peceasy.it,
-e a domicilio fisico via Aretusa 34, a Milano.
+per conto della comunità di hacker, attiviste, attivisti, cittadine e
+cittadini che, attenti a riservatezza, libertà e diritti cibernetici,
+ha realizzato Monitora PA (https://monitora-pa.it), eleggendo a 
+domicilio digitale l'indirizzo di posta elettronica certificata
+monitorapa@peceasy.it, e a domicilio fisico via Aretusa 34, a Milano.
 
 Facciamo seguito alla PEC già inviata in data $primo_invio, avendo
 rilevato come il vostro Ente utilizzi ancora Google Analytics (GA)
